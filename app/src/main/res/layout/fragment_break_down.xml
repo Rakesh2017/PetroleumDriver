@@ -1,0 +1,1066 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="enhabyto.com.petroleumdriver.BreakDown">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/break_mainRelativeLayout"
+        >
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/break_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/break_stateTextView"
+            android:fontFamily="droidsansbold.ttf"
+            android:padding="5dp"
+            android:text="@string/breakDown"
+            android:textColor="@color/saddleBrown"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <!--failure-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/break_failureTextView"
+            android:layout_below="@+id/break_header"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Failure Name"
+            android:textColor="@color/teal"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/break_failureEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/break_failureTextView"
+            android:hint="Name of the Failure"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <!--location-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/break_locationTextView"
+            android:layout_below="@+id/break_failureEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Address( location)"
+            android:textColor="@color/teal"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/break_locationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/break_locationTextView"
+            android:hint="Enter Address"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <!--state-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/break_stateTextView"
+            android:layout_below="@+id/break_locationEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="State Name"
+            android:textColor="@color/teal"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/break_stateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/break_stateTextView"
+            android:hint="Enter State Name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/break_anyLossTextView"
+            android:layout_below="@+id/break_stateEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Any Losses"
+            android:textColor="@color/teal"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+
+        <co.ceryle.radiorealbutton.RadioRealButtonGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/break_lossSelector"
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/break_anyLossTextView"
+            app:rrbg_animateDrawables_enter="overshoot"
+            app:rrbg_animateTexts_enter="overshoot"
+            app:rrbg_dividerColor="@color/black"
+            app:rrbg_dividerSize="1dp"
+            app:rrbg_radius="10dp"
+            app:rrbg_selectorColor="@color/lightGreen"
+            app:rrbg_selectorSize="6dp">
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rrb_drawableHeight="36dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="36dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                app:rrb_text="Yes"
+                app:rrb_textColor="@color/black"/>
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rrb_drawableGravity="right"
+                app:rrb_drawableHeight="36dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="36dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                app:rrb_text="No"
+                app:rrb_textColor="@color/black"/>
+        </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:id="@+id/break_relative1"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/break_lossSelector"
+            android:visibility="gone"
+            >
+
+
+            <!--1-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_resourceHeader1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/teal"
+                android:text="Resource Used 1"
+                android:layout_below="@id/error_dashImageView"
+                />
+
+            <LinearLayout
+                android:id="@+id/break_resourceLinear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/break_resourceHeader1"
+                android:weightSum="3"
+                >
+
+                <EditText
+                    android:id="@+id/break_resourceName1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="item used"
+                    android:textStyle="bold"
+                    android:layout_weight="3"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="textMultiLine"
+                    android:padding="7dp"
+                    android:layout_marginEnd="2dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceAmount1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="7dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceQuantity1"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:hint="Quantity"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="7dp"
+                    />
+
+
+            </LinearLayout>
+
+
+            <!--2-->
+
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_resourceHeader2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Resource Used 2"
+                android:layout_below="@+id/break_resourceLinear1"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:id="@+id/break_resourceLinear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/break_resourceHeader2"
+                android:weightSum="3"
+                android:visibility="gone"
+                >
+
+                <EditText
+                    android:id="@+id/break_resourceName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="item used"
+                    android:textStyle="bold"
+                    android:layout_weight="3"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="textMultiLine"
+                    android:padding="7dp"
+                    android:layout_marginEnd="2dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceAmount2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="7dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceQuantity2"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:hint="Quantity"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="7dp"
+                    />
+
+
+            </LinearLayout>
+
+
+            <!--3-->
+
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_resourceHeader3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Resource Used 3"
+                android:layout_below="@+id/break_resourceLinear2"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:id="@+id/break_resourceLinear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/break_resourceHeader3"
+                android:weightSum="3"
+                android:visibility="gone"
+                >
+
+                <EditText
+                    android:id="@+id/break_resourceName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="item used"
+                    android:textStyle="bold"
+                    android:layout_weight="3"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="textMultiLine"
+                    android:padding="7dp"
+                    android:layout_marginEnd="2dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceAmount3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="7dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceQuantity3"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:hint="Quantity"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="7dp"
+                    />
+
+
+            </LinearLayout>
+
+
+
+            <!--4-->
+
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_resourceHeader4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Resource Used 4"
+                android:layout_below="@+id/break_resourceLinear3"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:id="@+id/break_resourceLinear4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/break_resourceHeader4"
+                android:weightSum="3"
+                android:visibility="gone"
+                >
+
+                <EditText
+                    android:id="@+id/break_resourceName4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="item used"
+                    android:textStyle="bold"
+                    android:layout_weight="3"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="textMultiLine"
+                    android:padding="7dp"
+                    android:layout_marginEnd="2dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceAmount4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="7dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceQuantity4"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:hint="Quantity"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="7dp"
+                    />
+
+
+            </LinearLayout>
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_resourceHeader5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Resource Used 5"
+                android:layout_below="@+id/break_resourceLinear4"
+                android:visibility="gone"
+                />
+
+
+            <LinearLayout
+                android:id="@+id/break_resourceLinear5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/break_resourceHeader5"
+                android:weightSum="3"
+                android:visibility="gone"
+                >
+
+                <EditText
+                    android:id="@+id/break_resourceName5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="item used"
+                    android:textStyle="bold"
+                    android:layout_weight="3"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="textMultiLine"
+                    android:padding="7dp"
+                    android:layout_marginEnd="2dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceAmount5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="7dp"
+                    />
+
+                <EditText
+                    android:id="@+id/break_resourceQuantity5"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:hint="Quantity"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="7dp"
+                    />
+
+
+            </LinearLayout>
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_removeResource"
+                android:layout_below="@+id/break_resourceLinear5"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="7dp"
+                fancy:fb_fontIconSize="15sp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="2dp"
+                fancy:fb_defaultColor="@color/lightRed"
+                fancy:fb_focusColor="@color/white"
+                fancy:fb_iconPosition="bottom"
+                fancy:fb_fontIconResource="&#xf068;"
+                fancy:fb_radius="64dp"
+                fancy:fb_text="Remove"
+                fancy:fb_textColor="@color/black"/>
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_addResource"
+                android:layout_below="@+id/break_resourceLinear5"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="7dp"
+                fancy:fb_fontIconSize="15sp"
+                android:layout_alignParentEnd="true"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="2dp"
+                fancy:fb_defaultColor="@color/lightGreen"
+                fancy:fb_focusColor="@color/white"
+                fancy:fb_iconPosition="bottom"
+                fancy:fb_fontIconResource="&#xf067;"
+                fancy:fb_radius="64dp"
+                fancy:fb_text="Add"
+                fancy:fb_textColor="@color/black"/>
+
+
+
+
+
+
+            <!--1-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_billPhotoHeader1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/teal"
+                android:text="Bill Photo 1"
+                android:layout_below="@+id/break_addResource"
+                />
+
+            <LinearLayout
+                android:id="@+id/break_billPhotoLinear1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/break_billPhotoHeader1"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                >
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/break_selectBillPhoto1"
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    fancy:fb_borderColor="@color/black"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/blackFifty"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_fontIconResource="&#xf0c1;"
+                    fancy:fb_iconPosition="right"
+                    fancy:fb_radius="3dp"
+                    fancy:fb_text="select image"
+                    fancy:fb_textColor="@color/black" />
+
+
+
+                <EditText
+                    android:id="@+id/break_billEditText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1.5"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="3dp"
+
+                    />
+
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/break_billImageView1"
+                android:layout_below="@+id/break_billPhotoLinear1"
+                android:visibility="gone"
+                />
+
+            <!--2 photo-->
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_billPhotoHeader2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Bill Photo 2"
+                android:layout_below="@+id/break_billImageView1"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:id="@+id/break_billPhotoLinear2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/break_billPhotoHeader2"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                >
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/break_selectBillPhoto2"
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    fancy:fb_borderColor="@color/black"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/blackFifty"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_fontIconResource="&#xf0c1;"
+                    fancy:fb_iconPosition="right"
+                    fancy:fb_radius="3dp"
+                    fancy:fb_text="select image"
+                    fancy:fb_textColor="@color/black" />
+
+
+
+                <EditText
+                    android:id="@+id/break_billEditText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1.5"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="3dp"
+                    />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/break_billImageView2"
+                android:layout_below="@+id/break_billPhotoLinear2"
+                android:visibility="gone"
+                />
+
+            <!--3 photo-->
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_billPhotoHeader3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Bill Photo 3"
+                android:layout_below="@+id/break_billImageView2"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:id="@+id/break_billPhotoLinear3"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/break_billPhotoHeader3"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                >
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/break_selectBillPhoto3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.5"
+                    fancy:fb_borderColor="@color/black"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/blackFifty"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_fontIconResource="&#xf0c1;"
+                    fancy:fb_iconPosition="right"
+                    fancy:fb_radius="3dp"
+                    fancy:fb_text="select image"
+                    fancy:fb_textColor="@color/black" />
+
+
+
+                <EditText
+                    android:id="@+id/break_billEditText3"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1.5"
+                    android:hint="Price"
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/rupee_logo_mini"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:padding="3dp"
+                    />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/break_billImageView3"
+                android:layout_below="@+id/break_billPhotoLinear3"
+                android:visibility="gone"
+                />
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_removePhoto"
+                android:layout_below="@+id/break_billImageView3"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="7dp"
+                fancy:fb_fontIconSize="15sp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="2dp"
+                fancy:fb_defaultColor="@color/lightRed"
+                fancy:fb_focusColor="@color/white"
+                fancy:fb_iconPosition="bottom"
+                fancy:fb_fontIconResource="&#xf068;"
+                fancy:fb_radius="64dp"
+                fancy:fb_text="Remove"
+                fancy:fb_textColor="@color/black"/>
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_addPhoto"
+                android:layout_below="@+id/break_billImageView3"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="7dp"
+                fancy:fb_fontIconSize="15sp"
+                android:layout_alignParentEnd="true"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="2dp"
+                fancy:fb_defaultColor="@color/lightGreen"
+                fancy:fb_focusColor="@color/white"
+                fancy:fb_iconPosition="bottom"
+                fancy:fb_fontIconResource="&#xf067;"
+                fancy:fb_radius="64dp"
+                fancy:fb_text="Add"
+                fancy:fb_textColor="@color/black"/>
+
+
+
+            <!--Broken photo 1-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_brokenPhotoHeader1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/teal"
+                android:text="Broken part photo 1"
+                android:layout_below="@+id/break_removePhoto"
+                />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_brokenPhotoButton1"
+                android:layout_below="@+id/break_brokenPhotoHeader1"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/blackFifty"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf0c1;"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="3dp"
+                fancy:fb_text="select image"
+                fancy:fb_textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/break_brokenImageView4"
+                android:layout_below="@+id/break_brokenPhotoButton1"
+                android:visibility="gone"
+                />
+
+
+
+
+            <!--Broken photo 2-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_brokenPhotoHeader2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Broken part photo 2"
+                android:layout_below="@+id/break_brokenImageView4"
+                android:visibility="gone"
+                />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_brokenPhotoButton2"
+                android:layout_below="@+id/break_brokenPhotoHeader2"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/blackFifty"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf0c1;"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="3dp"
+                fancy:fb_text="select image"
+                fancy:fb_textColor="@color/black"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/break_brokenImageView5"
+                android:layout_below="@+id/break_brokenPhotoButton2"
+                android:visibility="gone"
+                />
+
+
+
+            <!--Broken photo 3-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/break_brokenPhotoHeader3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/blackNinety"
+                android:text="Broken part photo 3"
+                android:layout_below="@+id/break_brokenImageView5"
+                android:visibility="gone"
+                />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_brokenPhotoButton3"
+                android:layout_below="@+id/break_brokenPhotoHeader3"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/blackFifty"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf0c1;"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="3dp"
+                fancy:fb_text="select image"
+                fancy:fb_textColor="@color/black"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/break_brokenImageView6"
+                android:layout_below="@+id/break_brokenPhotoButton3"
+                android:visibility="gone"
+                />
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_removeBrokenPartPhoto"
+                android:layout_below="@+id/break_brokenImageView6"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="7dp"
+                fancy:fb_fontIconSize="15sp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="2dp"
+                fancy:fb_defaultColor="@color/lightRed"
+                fancy:fb_focusColor="@color/white"
+                fancy:fb_iconPosition="bottom"
+                fancy:fb_fontIconResource="&#xf068;"
+                fancy:fb_radius="64dp"
+                fancy:fb_text="Remove"
+                fancy:fb_textColor="@color/black"/>
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/break_addBrokenPartPhoto"
+                android:layout_below="@+id/break_brokenImageView6"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="7dp"
+                fancy:fb_fontIconSize="15sp"
+                android:layout_alignParentEnd="true"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="2dp"
+                fancy:fb_defaultColor="@color/lightGreen"
+                fancy:fb_focusColor="@color/white"
+                fancy:fb_iconPosition="bottom"
+                fancy:fb_fontIconResource="&#xf067;"
+                fancy:fb_radius="64dp"
+                fancy:fb_text="Add"
+                fancy:fb_textColor="@color/black"/>
+
+
+
+
+        </RelativeLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/break_submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/lightGreen"
+            fancy:fb_focusColor="@color/black"
+            fancy:fb_fontIconResource="&#xf1d9;"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="3dp"
+            fancy:fb_text="Submit"
+            fancy:fb_textColor="@color/black"
+            android:layout_below="@+id/break_relative1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+</android.support.v4.widget.NestedScrollView>

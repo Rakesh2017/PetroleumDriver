@@ -1,0 +1,202 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="enhabyto.com.petroleumdriver.EmergencyContact">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+
+
+
+        <!-- TODO: Update blank fragment layout -->
+        <util.android.textviews.FontTextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:fontFamily="droidsansbold.ttf"
+            android:textColor="@color/black"
+            android:text="@string/emergencyContact"
+            android:layout_centerHorizontal="true"
+            />
+
+        <!--2-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:id="@+id/emergency1"
+            android:layout_marginTop="24dp"
+            android:padding="5dp"
+            android:background="@drawable/rounded_edit_text_black"
+            android:visibility="gone"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            >
+        <!--1-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/emergency_contact1TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+
+            android:fontFamily="droidsansbold.ttf"
+            android:gravity="center"
+            android:text="Contact 1"
+            android:textAllCaps="true"
+            android:textColor="@color/blackNinety"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/emergency_contact1EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emergency_contact1TextView"
+            android:padding="3dp"
+            android:textStyle="bold"
+            android:maxLength="12"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/emergency_contact1EditText"
+            android:layout_alignTop="@+id/emergency_contact1EditText"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_call_black"
+            android:id="@+id/emergency_image1"
+            />
+
+        </RelativeLayout>
+
+
+
+        <!--2-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edit_text_black"
+            android:layout_below="@+id/emergency1"
+            android:id="@+id/emergency2"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            >
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/emergency_contact2TextView"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Contact 2"
+            android:textColor="@color/blackNinety"
+            android:textAllCaps="true"
+            android:textSize="16sp" />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/emergency_contact2EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emergency_contact2TextView"
+            android:padding="3dp"
+            android:maxLength="12"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/emergency_contact2EditText"
+            android:layout_alignTop="@+id/emergency_contact2EditText"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_call_black"
+            android:id="@+id/emergency_image2"
+            />
+
+        </RelativeLayout>
+
+        <!--3-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emergency2"
+            android:background="@drawable/rounded_edit_text_black"
+            android:id="@+id/emergency3"
+            android:layout_marginTop="16dp"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            >
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/emergency_contact3TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Contact 3"
+            android:textColor="@color/blackNinety"
+            android:textAllCaps="true"
+            android:textSize="16sp" />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/emergency_contact3EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emergency_contact3TextView"
+            android:padding="3dp"
+            android:maxLength="12"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/emergency_contact3EditText"
+            android:layout_alignTop="@+id/emergency_contact3EditText"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_call_black"
+            android:id="@+id/emergency_image3"
+            />
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NO EMERGENCY CONTACT"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"
+            android:id="@+id/emergency_text"
+            android:visibility="gone"
+            />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

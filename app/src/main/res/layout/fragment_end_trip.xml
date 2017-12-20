@@ -1,0 +1,152 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="enhabyto.com.petroleumdriver.EndTrip">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        >
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <util.android.textviews.FontTextView
+        android:id="@+id/end_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:fontFamily="droidsansbold.ttf"
+        android:textColor="@color/saddleBrown"
+        android:text="@string/endTrip"
+        android:layout_below="@id/error_dashImageView"
+        android:layout_centerHorizontal="true"
+        />
+
+
+    <!--failure-->
+    <util.android.textviews.FontTextView
+        android:id="@+id/end_pumpNameTextView"
+        android:layout_below="@+id/end_header"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="droidsansbold.ttf"
+        android:text="Pump Name"
+        android:textStyle="bold"
+        android:textColor="@color/teal"
+        android:textSize="18sp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/end_pumpNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end_pumpNameTextView"
+        android:hint="Name of the Pump"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_edit_text_black"
+        android:inputType="text"
+        android:padding="7dp"
+        />
+
+    <Spinner
+        android:id="@+id/end_spinner"
+        android:layout_below="@+id/end_pumpNameEditText"
+        android:layout_marginTop="8dp"
+        android:textAlignment="textEnd"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:gravity="end"
+        android:layout_height="wrap_content"/>
+
+
+    <!--location-->
+    <util.android.textviews.FontTextView
+        android:id="@+id/end_locationTextView"
+        android:layout_below="@+id/end_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="droidsansbold.ttf"
+        android:text="Address( location)"
+        android:textStyle="bold"
+        android:textColor="@color/teal"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/end_locationEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end_locationTextView"
+        android:hint="Enter Address"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_edit_text_black"
+        android:inputType="text"
+        android:padding="7dp"
+        />
+
+
+    <!--state-->
+    <util.android.textviews.FontTextView
+        android:id="@+id/end_stateTextView"
+        android:layout_below="@+id/end_locationEditText"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="droidsansbold.ttf"
+        android:text="State Name"
+        android:textStyle="bold"
+        android:textColor="@color/teal"
+        android:textSize="18sp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/end_stateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end_stateTextView"
+        android:hint="Enter State Name"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_edit_text_black"
+        android:inputType="text"
+        android:padding="7dp"
+        />
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/end_submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="1dp"
+        fancy:fb_defaultColor="@color/lightGreen"
+        fancy:fb_focusColor="@color/black"
+        fancy:fb_fontIconResource="&#xf091;"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="3dp"
+        fancy:fb_text="End Trip"
+        fancy:fb_textColor="@color/black"
+        android:layout_below="@+id/end_stateEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

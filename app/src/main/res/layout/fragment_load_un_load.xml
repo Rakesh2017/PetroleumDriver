@@ -1,0 +1,498 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="enhabyto.com.petroleumdriver.LoadUnLoad">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:id="@+id/header_relative1"
+        >
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/load_Button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            fancy:fb_borderColor="@color/black"
+            fancy:fb_borderWidth="2dp"
+            fancy:fb_defaultColor="@color/lightCoral"
+            fancy:fb_focusColor="@color/white"
+            fancy:fb_fontIconResource="&#xf0ed;"
+            fancy:fb_fontIconSize="40sp"
+            fancy:fb_iconPaddingTop="5dp"
+            fancy:fb_iconPosition="bottom"
+            fancy:fb_radius="64dp"
+            fancy:fb_text="Load"
+            fancy:fb_textColor="@color/black" />
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/unload_Button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            fancy:fb_fontIconSize="40sp"
+            android:layout_alignParentEnd="true"
+            android:padding="10dp"
+            android:layout_marginEnd="16dp"
+            fancy:fb_borderColor="@color/black"
+            fancy:fb_borderWidth="2dp"
+            fancy:fb_defaultColor="@color/paleGold"
+            fancy:fb_focusColor="@color/white"
+            fancy:fb_iconPosition="bottom"
+            fancy:fb_iconPaddingTop="5dp"
+            fancy:fb_fontIconResource="&#xf0ee;"
+            fancy:fb_radius="64dp"
+            fancy:fb_text="UnLoad"
+            fancy:fb_textColor="@color/black"/>
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_relative1"
+            android:layout_marginTop="16dp"
+            android:id="@+id/load_relative"
+            android:visibility="gone"
+            >
+
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/load_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:fontFamily="droidsansbold.ttf"
+                android:textColor="@color/saddleBrown"
+                android:text="@string/load"
+                android:layout_below="@id/error_dashImageView"
+                android:layout_centerHorizontal="true"
+                />
+
+            <!--oil taken-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/load_oilLoadedTextView"
+                android:layout_below="@+id/load_header"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="droidsansbold.ttf"
+                android:text="Oil Loaded"
+                android:textStyle="bold"
+                android:textColor="@color/teal"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/load_oilLoadedEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/load_oilLoadedTextView"
+                android:hint="        "
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:background="@drawable/rounded_edit_text_black"
+                android:inputType="number"
+                android:maxLength="5"
+                android:padding="7dp"
+                />
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/load_litreText"
+                android:layout_toEndOf="@+id/load_oilLoadedEditText"
+                android:layout_alignBottom="@+id/load_oilLoadedEditText"
+                android:layout_marginStart="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="droidsansbold.ttf"
+                android:text="Litres"
+                android:textStyle="bold"
+                android:textColor="@color/blackNinety"
+                android:textSize="18sp" />
+
+
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/load_locationTextView"
+                android:layout_below="@+id/load_oilLoadedEditText"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="droidsansbold.ttf"
+                android:text="Address (location)"
+                android:textStyle="bold"
+                android:textColor="@color/teal"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/load_locationEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/load_locationTextView"
+                android:hint="Enter Location"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@drawable/rounded_edit_text_black"
+                android:inputType="text"
+                android:padding="7dp"
+                />
+
+
+            <!--state-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/load_stateTextView"
+                android:layout_below="@+id/load_locationEditText"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="droidsansbold.ttf"
+                android:text="State Name"
+                android:textStyle="bold"
+                android:textColor="@color/teal"
+                android:textSize="18sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/load_stateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/load_stateTextView"
+                android:hint="Enter State Name"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@drawable/rounded_edit_text_black"
+                android:inputType="text"
+                android:padding="7dp"
+                />
+
+            <!--going to-->
+            <util.android.textviews.FontTextView
+                android:id="@+id/load_goingToTextView"
+                android:layout_below="@+id/load_stateEditText"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="droidsansbold.ttf"
+                android:text="Going to"
+                android:textStyle="bold"
+                android:textColor="@color/teal"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/load_goingToEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/load_goingToTextView"
+                android:hint="Enter Next Stoppage"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@drawable/rounded_edit_text_black"
+                android:inputType="text"
+                android:padding="7dp"
+                />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/load_submitLoadDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/load_goingToEditText"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="16dp"
+                fancy:fb_borderColor="#FFFFFF"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/lightGreen"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf1d9;"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="3dp"
+                fancy:fb_textColor="@color/black"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                fancy:fb_text="Submit"
+                />
+
+
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_relative1"
+        android:layout_marginTop="16dp"
+        android:id="@+id/unload_relative"
+        android:visibility="gone"
+        >
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/unload_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:fontFamily="droidsansbold.ttf"
+            android:textColor="@color/saddleBrown"
+            android:text="@string/unload"
+            android:layout_below="@id/error_dashImageView"
+            android:layout_centerHorizontal="true"
+            />
+
+        <!--oil taken-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/unload_oilLoadedTextView"
+            android:layout_below="@+id/unload_header"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Oil unLoaded"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/unload_oilLoadedEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unload_oilLoadedTextView"
+            android:hint="        "
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="number"
+            android:maxLength="5"
+            android:padding="7dp"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/load_litreText1"
+            android:layout_toEndOf="@+id/unload_oilLoadedEditText"
+            android:layout_alignBottom="@+id/unload_oilLoadedEditText"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Litres"
+            android:textStyle="bold"
+            android:textColor="@color/blackNinety"
+            android:textSize="18sp" />
+
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/unload_pumpNameTextView"
+            android:layout_below="@+id/unload_oilLoadedEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Pump Name"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/unload_pumpNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unload_pumpNameTextView"
+            android:hint="Enter Pump Name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+        <Spinner
+            android:id="@+id/uload_spinner"
+            android:layout_below="@+id/unload_pumpNameEditText"
+            android:layout_marginTop="8dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:gravity="end"
+            android:layout_height="wrap_content"/>
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/unload_locationTextView"
+            android:layout_below="@+id/uload_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Address (location)"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/unload_locationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unload_locationTextView"
+            android:hint="Enter Pump Location"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/unload_stateTextView"
+            android:layout_below="@+id/unload_locationEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="State Name"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/unload_stateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unload_stateTextView"
+            android:hint="Enter State Name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/unload_oilLeftTextView"
+            android:layout_below="@+id/unload_stateEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Oil Left"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/unload_oilLeftEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unload_oilLeftTextView"
+            android:hint="           "
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="number"
+            android:maxLength="5"
+            android:padding="7dp"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/load_litreText2"
+            android:layout_toEndOf="@+id/unload_oilLeftEditText"
+            android:layout_alignBottom="@+id/unload_oilLeftEditText"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Litres"
+            android:textStyle="bold"
+            android:textColor="@color/blackNinety"
+            android:textSize="18sp" />
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/unload_goingToTextView"
+            android:layout_below="@+id/unload_stateEditText"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/load_litreText2"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Going To"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/unload_goingToEditText"
+            android:layout_alignStart="@+id/unload_goingToTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unload_goingToTextView"
+            android:hint="Enter Next Stoppage"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="textMultiLine"
+            android:padding="7dp"
+            />
+
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/unload_submitUnLoadDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unload_goingToEditText"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="16dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/lightGreen"
+            fancy:fb_focusColor="@color/black"
+            fancy:fb_fontIconResource="&#xf1d9;"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="3dp"
+            fancy:fb_textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            fancy:fb_text="Submit"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,349 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="enhabyto.com.petroleumdriver.PetrolFilling">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        >
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:fontFamily="droidsansbold.ttf"
+            android:textColor="@color/lightCoral"
+            android:text="@string/petrolFilling"
+            android:layout_below="@id/error_dashImageView"
+            android:layout_centerHorizontal="true"
+            />
+
+<!--pump name-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_pumpNameTextView"
+            android:layout_below="@+id/petrol_header"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Name of Pump"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/petrol_pumpNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/petrol_pumpNameTextView"
+            android:hint="Enter Name of the pump"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            android:gravity=""
+            />
+
+        <Spinner
+            android:id="@+id/petrol_spinnerPumpName"
+            android:layout_below="@id/petrol_pumpNameEditText"
+            android:layout_marginTop="8dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:gravity="end"
+            android:layout_height="wrap_content"/>
+
+
+        <!--token number-->
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_tokenNumberTextView"
+            android:layout_below="@+id/petrol_spinnerPumpName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Token Number"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/petrol_tokenNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/petrol_tokenNumberTextView"
+            android:hint="Enter Token Number"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <!--location-->
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_locationNameTextView"
+            android:layout_below="@+id/petrol_tokenNumberEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Pump Address"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/petrol_locationNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/petrol_locationNameTextView"
+            android:hint="Enter Address of the pump"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <!--state-->
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_stateNameTextView"
+            android:layout_below="@+id/petrol_locationNameEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="State Name"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/petrol_stateNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/petrol_stateNameTextView"
+            android:hint="Enter Name of the State"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <!--amount-->
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_amountPaidTextView"
+            android:layout_below="@+id/petrol_stateNameEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Money Paid"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+
+        <EditText
+            android:id="@+id/petrol_amountPaidEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/petrol_amountPaidTextView"
+            android:hint=" Rupee "
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="number"
+            android:drawableStart="@drawable/rupee_logo_mini"
+            android:drawablePadding="7dp"
+            android:maxLength="5"
+            android:gravity="center"
+            android:padding="7dp"
+            />
+
+
+        <!--petrol quantity-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_litreText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/petrol_amountPaidEditText"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Litres"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/blackNinety"
+            android:textSize="18sp" />
+
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_quantityTextView"
+            android:layout_below="@+id/petrol_stateNameEditText"
+            android:layout_marginEnd="16dp"
+            android:layout_alignStart="@+id/petrol_quantityEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Petrol"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+
+        <EditText
+            android:id="@+id/petrol_quantityEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/petrol_litreText"
+            android:layout_below="@+id/petrol_quantityTextView"
+            android:background="@drawable/rounded_edit_text_black"
+            android:gravity="center"
+            android:layout_marginEnd="3dp"
+            android:hint="           "
+            android:textStyle="bold"
+            android:inputType="number"
+            android:maxLength="4"
+            android:padding="7dp"
+            android:textColor="@color/black" />
+
+
+
+
+
+        <!--bill photo-->
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_billPhotoNameTextView"
+            android:layout_below="@+id/petrol_quantityEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Bill Photo"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/petrol_billPhotoNameTextView"
+            android:weightSum="2"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:id="@+id/cp_linear1"
+            android:layout_marginTop="7dp"
+            >
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/petrol_selectBillPhoto"
+                android:layout_weight="0.7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/blackFifty"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf0c1;"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="3dp"
+                fancy:fb_text="select image"
+                fancy:fb_textColor="@color/black" />
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/petrol_cancelImage"
+                android:layout_weight="1.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/blackFifty"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf00d;"
+                fancy:fb_iconPosition="left"
+                fancy:fb_radius="3dp"
+                fancy:fb_text="cancel"
+                fancy:fb_textColor="@color/black" />
+
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/petrol_billImage"
+            android:layout_below="@+id/cp_linear1"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/petrol_submitPetrolDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/petrol_billImage"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="16dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/lightGreen"
+            fancy:fb_focusColor="@color/black"
+            fancy:fb_fontIconResource="&#xf1d9;"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="3dp"
+            fancy:fb_textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            fancy:fb_text="Submit"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

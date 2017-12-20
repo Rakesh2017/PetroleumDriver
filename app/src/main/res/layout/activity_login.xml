@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:match="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/login_background"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    tools:context="enhabyto.com.petroleumdriver.Login">
+
+    <com.roger.match.library.MatchTextView
+        match:text="DRIVER"
+        match:textSize="20sp"
+        match:textColor="#ffffff"
+        android:id="@+id/main_admin_logo"
+        android:layout_marginTop="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_contact_input"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/white"
+        android:layout_below="@id/main_admin_logo"
+        android:layout_marginTop="16dp"
+        >
+        <EditText
+            android:id="@+id/login_contactEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="40sp"
+            android:hint="Mobile Number"
+            android:inputType="phone"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:background="@color/whiteFifty"
+            android:maxLength="10"
+            android:translationY="10dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="7sp"
+            android:paddingBottom="7sp"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_password_input"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/white"
+        android:layout_below="@+id/login_contact_input"
+        >
+        <EditText
+            android:id="@+id/login_passwordEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="40sp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:background="@color/whiteFifty"
+            android:maxLength="12"
+            android:translationY="10dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="7sp"
+            android:paddingBottom="7sp"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/login_loginButton"
+        android:layout_below="@+id/login_password_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="7dp"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="1dp"
+        fancy:fb_focusColor="@color/whiteFifty"
+        fancy:fb_radius="3dp"
+        fancy:fb_text="Login"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_fontIconResource="&#xf023;"
+        fancy:fb_iconPosition="right"
+        />
+
+
+
+
+
+
+</RelativeLayout>

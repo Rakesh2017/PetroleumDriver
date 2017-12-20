@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--My Custom Colors-->
+    <color name="black">#000000</color>
+    <color name="blackFifty">#50000000</color>
+    <color name="white">#ffffff</color>
+    <color name="whiteFifty">#50ffffff</color>
+    <color name="blackNinety">#90000000</color>
+    <color name="lightGreen">#3dbb93</color>
+    <color name="lightRed">#e25b68</color>
+    <color name="naturalBlue">#5B90F6</color>
+    <color name="powderBlue">#B0E0E6</color>
+    <color name="paleGold">#EEE8AA</color>
+    <color name="lightCyan">#E0FFFF</color>
+    <color name="bisque">#FFE4C4</color>
+    <color name="plum">#DDA0DD</color>
+    <color name="lightCoral">#F08080</color>
+    <color name="saddleBrown">#8B4513</color>
+    <color name="teal">#008080</color>
+    <color name="tomato">#FF6347</color>
+    <color name="hotPink">#FF69B4</color>
+    <color name="tan">#D2B48C</color>
+
+
+</resources>

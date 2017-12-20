@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        >
+
+
+
+    <!--state-->
+    <util.android.textviews.FontTextView
+        android:id="@+id/schedule_stateTextView"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="droidsansbold.ttf"
+        android:text="@string/newTrip"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textSize="22sp" />
+
+
+
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/schedule_backButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/schedule_stateTextView"
+            android:padding="1dp"
+            fancy:fb_borderColor="@color/black"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/powderBlue"
+            fancy:fb_focusColor="@color/white"
+            fancy:fb_iconPosition="bottom"
+            fancy:fb_radius="64dp"
+            fancy:fb_text="home"
+            fancy:fb_fontIconResource="&#xf015;"
+            fancy:fb_textColor="@color/black"/>
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_headerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/schedule_backButton"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/border_image_background"
+            android:fontFamily="droidsansbold.ttf"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_startDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/schedule_headerTextView"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/border_image_background"
+            android:fontFamily="droidsansbold.ttf"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="@color/lightRed"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            />
+
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_truckNumberTextView"
+            android:layout_below="@+id/schedule_startDateTextView"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Truck Number"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/schedule_truckNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/schedule_truckNumberTextView"
+            android:hint="Enter Truck Number"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:inputType="text"
+            android:maxLength="13"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <Spinner
+            android:id="@+id/schedule_spinnerTruckNumber"
+            android:layout_below="@id/schedule_truckNumberEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!--truck location-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_truckLocationTextView"
+            android:layout_below="@+id/schedule_spinnerTruckNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Truck Location"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/schedule_truckLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_truckLocationTextView"
+            android:hint="Enter Truck Location"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <Spinner
+            android:id="@+id/schedule_spinnerTruckLocation"
+            android:layout_below="@id/schedule_truckLocationEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!--expenses taken-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_expensesTakenTextView"
+            android:layout_below="@+id/schedule_spinnerTruckLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Money Taken"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/schedule_expensesTakenEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_expensesTakenTextView"
+            android:hint="Rupees"
+            android:drawableStart="@drawable/rupee_logo_mini"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="5"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+
+        <!--trip Start Location-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_startLocationTextView"
+            android:layout_below="@+id/schedule_expensesTakenEditText"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Trip Start Location"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/schedule_startLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_startLocationTextView"
+            android:hint="Enter Place Name"
+            android:inputType="textMultiLine"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+        <Spinner
+            android:id="@+id/schedule_spinnerStartLocation"
+            android:layout_below="@+id/schedule_startLocationEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--expected stoppage-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_expectedStoppageTextView"
+            android:layout_below="@+id/schedule_spinnerStartLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Expected Stoppage"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/schedule_expectedStoppageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_expectedStoppageTextView"
+            android:hint="Enter Expected Stoppage"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+        <Spinner
+            android:id="@+id/schedule_spinnerExpectedStoppage"
+            android:layout_below="@+id/schedule_expectedStoppageEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!--Fuel taken-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/taken_fuelTaken1TextView"
+            android:layout_below="@+id/schedule_spinnerExpectedStoppage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Fuel Taken"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/taken_fuelTakenEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taken_fuelTaken1TextView"
+            android:hint="  ...   "
+            android:inputType="number"
+            android:gravity="center"
+            android:maxLength="3"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_fuelTakenText"
+            android:layout_toEndOf="@+id/taken_fuelTakenEditText"
+            android:layout_alignBottom="@+id/taken_fuelTakenEditText"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Litres"
+            android:textStyle="bold"
+            android:textColor="@color/blackNinety"
+            android:textSize="18sp" />
+
+
+
+        <!--Fuel Price-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_fuelPriceTextView"
+            android:layout_below="@+id/petrol_fuelTakenText"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Fuel Price (Rupee/Litre)"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/schedule_fuelPriceEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_fuelPriceTextView"
+            android:hint="Rupee"
+            android:inputType="number"
+            android:drawableStart="@drawable/rupee_logo_mini"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:maxLength="2"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+
+        <!--state name-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_stateNameTextView"
+            android:layout_below="@+id/schedule_fuelPriceEditText"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="State Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/schedule_stateNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_stateNameTextView"
+            android:hint="Enter State Name"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <!--City name-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/schedule_cityNameTextView"
+            android:layout_below="@+id/schedule_stateNameEditText"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="City Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/schedule_cityNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_cityNameTextView"
+            android:hint="Enter City Name"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <co.ceryle.radiorealbutton.RadioRealButtonGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rrbg_animateDrawables_enter="overshoot"
+            app:rrbg_animateTexts_enter="overshoot"
+            app:rrbg_dividerColor="@color/black"
+            app:rrbg_dividerSize="2dp"
+            app:rrbg_radius="2dp"
+            app:rrbg_selectorColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:id="@+id/schedule_choice"
+            android:layout_below="@+id/schedule_cityNameEditText"
+            app:rrbg_selectorSize="6dp">
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/schedule_choice1"
+                app:rrb_drawable="@drawable/ic_close_black"
+                app:rrb_drawableHeight="36dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="36dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/lightRed"
+                app:rrb_text="REJECT"
+                app:rrb_textColor="@color/black"/>
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/schedule_choice2"
+                app:rrb_drawable="@drawable/ic_check_black"
+                app:rrb_drawableGravity="right"
+                app:rrb_drawableHeight="36dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="36dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/lightGreen"
+                app:rrb_text="ACCEPT"
+                app:rrb_textColor="@color/black"/>
+        </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

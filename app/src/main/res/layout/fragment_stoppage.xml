@@ -1,0 +1,232 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="enhabyto.com.petroleumdriver.Stoppage">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        >
+
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/stop_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:padding="3dp"
+            android:textSize="24sp"
+            android:fontFamily="droidsansbold.ttf"
+            android:textColor="@color/lightCoral"
+            android:text="@string/stoppage"
+            android:layout_below="@id/error_dashImageView"
+            android:layout_centerHorizontal="true"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/stop_stoppageNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/stop_header"
+            android:layout_marginTop="16dp"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Name of Place"
+            android:textColor="@color/teal"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/stop_stoppageNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stop_stoppageNameTextView"
+            android:hint="Enter Name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/stop_descriptionTextView"
+            android:layout_below="@+id/stop_stoppageNameEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Description"
+            android:textColor="@color/teal"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/stop_descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stop_descriptionTextView"
+            android:hint="Enter details of Stoppage"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="textMultiLine"
+            android:padding="7dp"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/stop_paidChoiceTextView"
+            android:layout_below="@+id/stop_descriptionEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Paid Anything"
+            android:textColor="@color/teal"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <co.ceryle.radiorealbutton.RadioRealButtonGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/stop_paidSelector"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/stop_paidChoiceTextView"
+            app:rrbg_animateDrawables_enter="overshoot"
+            app:rrbg_animateTexts_enter="overshoot"
+            app:rrbg_dividerColor="@color/black"
+            app:rrbg_dividerSize="1dp"
+            app:rrbg_radius="10dp"
+            app:rrbg_selectorColor="@color/lightGreen"
+            app:rrbg_selectorSize="6dp">
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rrb_drawableHeight="36dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="36dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                app:rrb_text="Yes"
+                app:rrb_textColor="@color/black"/>
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rrb_drawableGravity="right"
+                app:rrb_drawableHeight="36dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="36dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                app:rrb_text="No"
+                app:rrb_textColor="@color/black"/>
+        </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/stop_relativeLayout2"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:layout_below="@+id/stop_paidSelector"
+            android:visibility="gone"
+            >
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/stop_paidTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="droidsansbold.ttf"
+                android:text="Amount Paid"
+                android:textColor="@color/teal"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+
+            <EditText
+                android:id="@+id/stop_paidEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/stop_paidTextView"
+                android:drawableStart="@drawable/rupee_logo_mini"
+                android:drawablePadding="7dp"
+                android:hint=" Rupee "
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:background="@drawable/rounded_edit_text_black"
+                android:inputType="number"
+                android:maxLength="5"
+                android:padding="7dp"
+                />
+
+
+
+            <util.android.textviews.FontTextView
+                android:id="@+id/stop_paidForTextView"
+                android:layout_below="@+id/stop_paidEditText"
+                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="droidsansbold.ttf"
+                android:text="Amount Paid For"
+                android:textColor="@color/teal"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/stop_paidForEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/stop_paidForTextView"
+                android:hint="Money Spent on..."
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:inputType="textMultiLine"
+                android:background="@drawable/rounded_edit_text_black"
+                android:padding="7dp"
+                />
+
+
+        </RelativeLayout>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/stop_submitStoppageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/lightGreen"
+            fancy:fb_focusColor="@color/black"
+            fancy:fb_fontIconResource="&#xf1d9;"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="3dp"
+            fancy:fb_text="Submit"
+            fancy:fb_textColor="@color/black"
+            android:layout_below="@+id/stop_relativeLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            />
+
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

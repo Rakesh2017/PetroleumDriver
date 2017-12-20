@@ -1,0 +1,250 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="enhabyto.com.petroleumdriver.OtherFilling">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        >
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/other_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:fontFamily="droidsansbold.ttf"
+            android:textColor="@color/lightCoral"
+            android:text="@string/otherFilling"
+            android:layout_below="@id/error_dashImageView"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <!--pump name-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/other_fillingNameTextView"
+            android:layout_below="@+id/other_header"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Name of Filling"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/other_fillingNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/other_fillingNameTextView"
+            android:hint="Enter Name of the Filling"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+        <!--quantity-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/other_quantityTextView"
+            android:layout_below="@+id/other_fillingNameEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Quantity Filled"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/other_quantityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/other_quantityTextView"
+            android:hint="Enter the quantity"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="text"
+            android:padding="7dp"
+            />
+
+
+
+        <!--price-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/other_priceTextView"
+            android:layout_below="@+id/other_quantityEditText"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Money Paid"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/other_priceEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/other_priceTextView"
+            android:hint=" Rupee "
+            android:textStyle="bold"
+            android:drawableStart="@drawable/rupee_logo_mini"
+            android:drawablePadding="7dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="number"
+            android:gravity="center"
+            android:maxLength="5"
+            android:padding="7dp"
+            />
+
+
+        <!--description-->
+        <util.android.textviews.FontTextView
+            android:id="@+id/other_descriptionTextView"
+            android:layout_marginStart="16dp"
+            android:layout_below="@+id/other_quantityEditText"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@+id/other_priceEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Description"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/other_descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/other_descriptionTextView"
+            android:layout_below="@id/other_descriptionTextView"
+            android:hint="Enter the Description"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edit_text_black"
+            android:inputType="textMultiLine"
+            android:padding="7dp"
+            />
+
+        <!--bill photo-->
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/other_billPhotoNameTextView"
+            android:layout_below="@+id/other_descriptionEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Bill Photo"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/teal"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/other_billPhotoNameTextView"
+            android:weightSum="2"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:id="@+id/other_linear1"
+            android:layout_marginTop="7dp"
+            >
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/other_selectBillPhoto"
+                android:layout_weight="0.7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/blackFifty"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf0c1;"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="3dp"
+                fancy:fb_text="select image"
+                fancy:fb_textColor="@color/black" />
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/other_cancelBillPhoto"
+                android:layout_weight="1.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                fancy:fb_borderColor="@color/black"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/blackFifty"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_fontIconResource="&#xf00d;"
+                fancy:fb_iconPosition="left"
+                fancy:fb_radius="3dp"
+                fancy:fb_text="cancel"
+                fancy:fb_textColor="@color/black" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/other_billImage"
+            android:layout_below="@+id/other_linear1"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            />
+
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/other_submitOtherDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/other_billImage"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="16dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/lightGreen"
+            fancy:fb_focusColor="@color/black"
+            fancy:fb_fontIconResource="&#xf1d9;"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="3dp"
+            fancy:fb_textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            fancy:fb_text="Submit"
+            />
+
+
+
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

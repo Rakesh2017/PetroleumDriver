@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="enhabyto.com.petroleumdriver.DashBoard"
+    android:id="@+id/fragment_container_DashBoard"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    tools:showIn="@layout/app_bar_dash_board">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dash_relativeLayout1"
+        android:background="@color/white"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"
+        >
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_noTripTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            android:fontFamily="droidsansbold.ttf"
+            android:textColor="@color/black"
+            android:text="No Trip Scheduled!"
+            android:layout_below="@id/error_dashImageView"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:id="@+id/error_dashImageView"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/error_dash"
+            android:layout_centerHorizontal="true"
+            />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/dash_startNewTripButton"
+            android:layout_below="@+id/error_dashImageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="120dp"
+            android:padding="10dp"
+            fancy:fb_borderColor="@color/black"
+            fancy:fb_borderWidth="2dp"
+            fancy:fb_defaultColor="@color/lightGreen"
+            android:layout_centerInParent="true"
+            fancy:fb_focusColor="@color/white"
+            fancy:fb_fontIconResource="&#xf0d1;"
+            fancy:fb_iconPaddingTop="10dp"
+            fancy:fb_iconPaddingBottom="10dp"
+            fancy:fb_iconPosition="top"
+            fancy:fb_radius="64dp"
+            fancy:fb_text="@string/startTrip"
+            fancy:fb_textColor="@color/black"/>
+
+    </RelativeLayout>
+    
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dash_relativeLayout2"
+        android:background="@color/white"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"
+        >
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_text1"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Enter Trip Details"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/dash_backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@id/dash_text1"
+            android:padding="3dp"
+            fancy:fb_borderColor="@color/black"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/powderBlue"
+            fancy:fb_focusColor="@color/white"
+            fancy:fb_iconPosition="bottom"
+            fancy:fb_radius="64dp"
+            fancy:fb_text="back"
+            fancy:fb_fontIconResource="&#xf060;"
+            fancy:fb_textColor="@color/black"/>
+
+
+
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_truckNumberTextView"
+            android:layout_below="@+id/dash_text1"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Truck Number"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/dash_truckNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dash_truckNumberTextView"
+            android:hint="Enter Truck Number"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:maxLength="13"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <Spinner
+            android:id="@+id/dash_spinnerTruckNumber"
+            android:layout_below="@id/dash_truckNumberEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!--truck location-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_truckLocationTextView"
+            android:layout_below="@+id/dash_spinnerTruckNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Truck Location"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/dash_truckLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dash_truckLocationTextView"
+            android:hint="Enter Truck Location"
+            android:textStyle="bold"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <Spinner
+            android:id="@+id/dash_spinnerTruckLocation"
+            android:layout_below="@id/dash_truckLocationEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!--expenses taken-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_expensesTakenTextView"
+            android:layout_below="@+id/dash_spinnerTruckLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Money Taken"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/dash_expensesTakenEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dash_expensesTakenTextView"
+            android:hint="Rupees"
+            android:textStyle="bold"
+            android:drawableStart="@drawable/rupee_logo_mini"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="5"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+
+        <!--trip Start Location-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_startLocationTextView"
+            android:layout_below="@+id/dash_expensesTakenEditText"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Trip Start Location"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/dash_startLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dash_startLocationTextView"
+            android:hint="Enter Place Name"
+            android:textStyle="bold"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+        <Spinner
+            android:id="@+id/dash_spinnerStartLocation"
+            android:layout_below="@+id/dash_startLocationEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--expected stoppage-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_expectedStoppageTextView"
+            android:layout_below="@+id/dash_spinnerStartLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Expected Stoppage"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/dash_expectedStoppageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dash_expectedStoppageTextView"
+            android:hint="Enter Expected Stoppage"
+            android:textStyle="bold"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+        <Spinner
+            android:id="@+id/dash_spinnerExpectedStoppage"
+            android:layout_below="@+id/dash_expectedStoppageEditText"
+            android:layout_marginTop="3dp"
+            android:textAlignment="textEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--Fuel taken-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/taken_fuelPriceTextView"
+            android:layout_below="@+id/dash_spinnerExpectedStoppage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Fuel Taken"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/taken_fuelPriceEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taken_fuelPriceTextView"
+            android:hint="        "
+            android:textStyle="bold"
+            android:inputType="number"
+            android:gravity="center"
+            android:maxLength="3"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/petrol_litreText"
+            android:layout_toEndOf="@+id/taken_fuelPriceEditText"
+            android:layout_alignBottom="@+id/taken_fuelPriceEditText"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Litres"
+            android:textStyle="bold"
+            android:textColor="@color/blackNinety"
+            android:textSize="18sp" />
+
+
+
+        <!--Fuel Price-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_fuelPriceTextView"
+            android:layout_below="@+id/taken_fuelPriceEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="Fuel Price (Rupee/Litre)"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/dash_fuelPriceEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dash_fuelPriceTextView"
+            android:hint="Rupee"
+            android:textStyle="bold"
+            android:inputType="number"
+            android:drawableStart="@drawable/rupee_logo_mini"
+            android:drawablePadding="7dp"
+            android:gravity="center"
+            android:maxLength="2"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+
+        <!--state name-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_stateNameTextView"
+            android:layout_below="@+id/dash_fuelPriceEditText"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="State Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/dash_stateNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dash_stateNameTextView"
+            android:hint="Enter State Name"
+            android:textStyle="bold"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <!--City name-->
+
+        <util.android.textviews.FontTextView
+            android:id="@+id/dash_cityNameTextView"
+            android:layout_below="@+id/dash_stateNameEditText"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="droidsansbold.ttf"
+            android:text="City Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/dash_cityNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dash_cityNameTextView"
+            android:hint="Enter City Name"
+            android:textStyle="bold"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:padding="7dp"
+            android:background="@drawable/rounded_edit_text_black"
+            />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/dash_startTripButton"
+            android:layout_below="@+id/dash_cityNameEditText"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            fancy:fb_borderColor="@color/black"
+            android:layout_marginEnd="30dp"
+            fancy:fb_borderWidth="2dp"
+            fancy:fb_defaultColor="@color/lightGreen"
+            android:layout_alignParentEnd="true"
+            fancy:fb_focusColor="@color/white"
+            fancy:fb_iconPosition="bottom"
+            fancy:fb_radius="64dp"
+            fancy:fb_text="Start Trip"
+            android:layout_centerHorizontal="true"
+            fancy:fb_fontIconResource="&#xf0e4;"
+            android:layout_marginBottom="24dp"
+            fancy:fb_textColor="@color/black"/>
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/dash_cancelTripButton"
+            android:layout_below="@+id/dash_cityNameEditText"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            fancy:fb_borderColor="@color/black"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="24dp"
+            fancy:fb_borderWidth="2dp"
+            fancy:fb_defaultColor="@color/lightRed"
+            fancy:fb_focusColor="@color/white"
+            fancy:fb_iconPosition="bottom"
+            fancy:fb_radius="64dp"
+            fancy:fb_text="Cancel Trip"
+            fancy:fb_fontIconResource="&#xf057;"
+            android:layout_marginBottom="24dp"
+            fancy:fb_textColor="@color/black"/>
+     </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dash_relativeLayout3"
+                android:background="@color/white"
+                android:visibility="gone"
+                >
+
+                <util.android.textviews.FontTextView
+                    android:id="@+id/dash_tripDateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:maxLength="35"
+                    android:padding="3dp"
+                    android:fontFamily="droidsansbold.ttf"
+                    android:textColor="@color/black"
+                    android:text="Trip started on"
+                    android:visibility="invisible"
+                    android:background="@drawable/rounded_edit_text_black"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginTop="4dp"
+                    />
+
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/dash_tripDateTextView"
+                    >
+
+                <android.support.v7.widget.GridLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:grid="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/choice_grid"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    grid:alignmentMode="alignBounds"
+                    grid:columnCount="2"
+                    android:padding="2dp"
+                    grid:rowOrderPreserved="false"
+                    grid:useDefaultMargins="true"
+                    >
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/dash_stoppageButton"
+                        android:layout_below="@+id/dash_tripDateTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        grid:layout_columnWeight="1"
+                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_borderColor="@color/black"
+                        fancy:fb_borderWidth="2dp"
+                        fancy:fb_defaultColor="@color/lightCoral"
+                        fancy:fb_focusColor="@color/white"
+                        fancy:fb_iconPosition="bottom"
+                        fancy:fb_radius="3dp"
+                        fancy:fb_text="stoppage"
+                        fancy:fb_iconPaddingTop="5dp"
+                        fancy:fb_fontIconResource="&#xf253;"
+                        fancy:fb_textColor="@color/black"/>
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/dash_petrolFillingButton"
+                        android:layout_below="@+id/dash_tripDateTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        grid:layout_columnWeight="1"
+                        fancy:fb_fontIconSize="45sp"
+                        android:layout_alignParentEnd="true"
+                        android:padding="10dp"
+                        fancy:fb_borderColor="@color/black"
+                        fancy:fb_borderWidth="2dp"
+                        fancy:fb_defaultColor="@color/paleGold"
+                        fancy:fb_focusColor="@color/white"
+                        fancy:fb_iconPosition="bottom"
+                        fancy:fb_iconPaddingTop="5dp"
+                        fancy:fb_fontIconResource="&#xf043;"
+                        fancy:fb_radius="3dp"
+                        fancy:fb_text="Petrol Filling"
+                        android:gravity="center"
+                        fancy:fb_textColor="@color/black"/>
+
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/dash_otherFillingButton"
+                        android:layout_below="@+id/dash_stoppageButton"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_borderColor="@color/black"
+                        fancy:fb_borderWidth="2dp"
+                        fancy:fb_defaultColor="@color/powderBlue"
+                        fancy:fb_focusColor="@color/white"
+                        fancy:fb_iconPosition="bottom"
+                        fancy:fb_radius="3dp"
+                        fancy:fb_iconPaddingTop="5dp"
+                        fancy:fb_fontIconResource="&#xf1fb;"
+                        fancy:fb_text="Other Filling"
+                        fancy:fb_textColor="@color/black"/>
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/dash_loadButton"
+                        android:layout_below="@+id/dash_stoppageButton"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:gravity="center"
+                        android:layout_alignParentEnd="true"
+                        android:padding="10dp"
+                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_borderColor="@color/black"
+                        fancy:fb_borderWidth="2dp"
+                        fancy:fb_defaultColor="@color/bisque"
+                        fancy:fb_focusColor="@color/white"
+                        fancy:fb_iconPosition="bottom"
+                        fancy:fb_radius="3dp"
+                        fancy:fb_iconPaddingTop="5dp"
+                        fancy:fb_fontIconResource="&#xf160;"
+                        fancy:fb_text="Load \ NnLoad"
+                        fancy:fb_textColor="@color/black"/>
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/dash_breakDownButton"
+                        android:layout_below="@+id/dash_loadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        fancy:fb_borderColor="@color/black"
+                        fancy:fb_borderWidth="2dp"
+                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_defaultColor="@color/plum"
+                        fancy:fb_focusColor="@color/white"
+                        fancy:fb_iconPosition="bottom"
+                        fancy:fb_radius="3dp"
+                        fancy:fb_iconPaddingTop="5dp"
+                        fancy:fb_fontIconResource="&#xf0ad;"
+                        fancy:fb_text="BreakDown"
+                        fancy:fb_textColor="@color/black"/>
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/dash_endTripButton"
+                        android:layout_below="@+id/dash_loadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:gravity="center"
+                        android:layout_alignParentEnd="true"
+                        android:padding="10dp"
+                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_borderColor="@color/black"
+                        fancy:fb_borderWidth="2dp"
+                        fancy:fb_defaultColor="@color/lightRed"
+                        fancy:fb_focusColor="@color/white"
+                        fancy:fb_iconPosition="bottom"
+                        fancy:fb_radius="3dp"
+                        fancy:fb_iconPaddingTop="5dp"
+                        fancy:fb_fontIconResource="&#xf091;"
+                        fancy:fb_text="End trip"
+                        fancy:fb_textColor="@color/black"/>
+
+
+
+
+                </android.support.v7.widget.GridLayout>
+                </ScrollView>
+
+
+
+
+            </RelativeLayout>
+
+
+
+                <util.android.textviews.FontTextView
+                    android:id="@+id/no_internet"
+                    android:layout_marginTop="150dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="droidsansbold.ttf"
+                    android:text="No Internet Connection!"
+                    android:drawableTop="@drawable/no_connection"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:textStyle="bold"
+                    android:padding="7dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:visibility="gone"
+                    />
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</FrameLayout>
+
+
+
+
+<!--
+
+
+
+
+
+
+
+
+-->
