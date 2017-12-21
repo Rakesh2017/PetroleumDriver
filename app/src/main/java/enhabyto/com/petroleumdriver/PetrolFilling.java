@@ -279,7 +279,7 @@ public class PetrolFilling extends Fragment {
                                             String longitude = String.valueOf(getLongitude());
                                             Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                                             String gps_address="";
-                                            List<Address> addresses  = null;
+                                            List<Address> addresses;
                                             try {
 
                                                 addresses = geocoder.getFromLocation(getLatitude(),getLongitude(), 1);

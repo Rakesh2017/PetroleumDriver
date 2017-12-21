@@ -737,7 +737,7 @@ public class BreakDown extends Fragment implements View.OnClickListener {
                                             Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                                             String gps_address="";
                                             try {
-                                                List<Address> addresses  = null;
+                                                List<Address> addresses;
                                                 addresses = geocoder.getFromLocation(getLatitude(),getLongitude(), 1);
                                                 gps_address = addresses.get(0).getAddressLine(0);
                                             } catch (IOException e) {
@@ -780,12 +780,12 @@ public class BreakDown extends Fragment implements View.OnClickListener {
                                                 if (TextUtils.equals(resourceQuantity2_tx, null) || TextUtils.equals(resourceQuantity2_tx, "")){
                                                     d_failure.child(secondKey).child("resource_name2").setValue(null);
                                                     d_failure.child(secondKey).child("resource_price2").setValue(null);
-                                                    d_failure.child(secondKey).child("resource_quantity2").setValue(resourceQuantity1_tx);
+                                                    d_failure.child(secondKey).child("resource_quantity2").setValue(resourceQuantity2_tx);
                                                 }
                                                 else {
                                                     d_failure.child(secondKey).child("resource_name2").setValue(resourceUsed2_tx);
-                                                    d_failure.child(secondKey).child("resource_price2").setValue(resourcePrice1_tx);
-                                                    d_failure.child(secondKey).child("resource_quantity2").setValue(resourceQuantity1_tx);
+                                                    d_failure.child(secondKey).child("resource_price2").setValue(resourcePrice2_tx);
+                                                    d_failure.child(secondKey).child("resource_quantity2").setValue(resourceQuantity2_tx);
                                                 }
 
                                                 if (TextUtils.equals(resourceQuantity3_tx, null) || TextUtils.equals(resourceQuantity3_tx, "")){
@@ -795,7 +795,7 @@ public class BreakDown extends Fragment implements View.OnClickListener {
                                                 }
                                                 else {
                                                     d_failure.child(secondKey).child("resource_name3").setValue(resourceUsed3_tx);
-                                                    d_failure.child(secondKey).child("resource_price3").setValue(resourcePrice2_tx);
+                                                    d_failure.child(secondKey).child("resource_price3").setValue(resourcePrice3_tx);
                                                     d_failure.child(secondKey).child("resource_quantity3").setValue(resourceQuantity3_tx);
                                                 }
 
@@ -806,7 +806,7 @@ public class BreakDown extends Fragment implements View.OnClickListener {
                                                 }
                                                 else {
                                                     d_failure.child(secondKey).child("resource_name4").setValue(resourceUsed4_tx);
-                                                    d_failure.child(secondKey).child("resource_price4").setValue(resourcePrice3_tx);
+                                                    d_failure.child(secondKey).child("resource_price4").setValue(resourcePrice4_tx);
                                                     d_failure.child(secondKey).child("resource_quantity4").setValue(resourceQuantity4_tx);
                                                 }
 

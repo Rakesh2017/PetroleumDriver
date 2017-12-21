@@ -275,7 +275,7 @@ public class LoadUnLoad extends Fragment implements View.OnClickListener{
                                             Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                                             String gps_address="";
                                             try {
-                                                List<Address> addresses  = null;
+                                                List<Address> addresses;
                                                 addresses = geocoder.getFromLocation(getLatitude(),getLongitude(), 1);
                                                 gps_address = addresses.get(0).getAddressLine(0);
                                             } catch (IOException e) {
@@ -444,7 +444,7 @@ public class LoadUnLoad extends Fragment implements View.OnClickListener{
                                             Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                                             String gps_address="";
                                             try {
-                                                List<Address> addresses  = null;
+                                                List<Address> addresses;
                                                 addresses = geocoder.getFromLocation(getLatitude(),getLongitude(), 1);
                                                 gps_address = addresses.get(0).getAddressLine(0);
                                             } catch (IOException e) {
