@@ -1,6 +1,6 @@
 package enhabyto.com.petroleumdriver;
 
-import android.app.Activity;
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -13,21 +13,12 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.IBinder;
 import android.os.Vibrator;
-import android.support.design.widget.NavigationView;
-import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tapadoo.alerter.Alerter;
-
 import br.com.goncalves.pugnotification.notification.PugNotification;
 
 /**
