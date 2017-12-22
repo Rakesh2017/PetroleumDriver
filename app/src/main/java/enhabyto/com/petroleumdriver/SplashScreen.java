@@ -99,7 +99,7 @@ public class SplashScreen extends AppCompatActivity {
             Intent i = new Intent(getBaseContext(), Login.class);
             startActivity(i);
 
-            finish();
+            SplashScreen.this.finish();
         }
     }
 
