@@ -1,5 +1,7 @@
 package enhabyto.com.petroleumdriver;
 
+
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -8,9 +10,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Address;
-import android.location.Geocoder;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,14 +21,13 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -41,7 +41,6 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -68,17 +67,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.tapadoo.alerter.Alerter;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
-
 import br.com.goncalves.pugnotification.notification.PugNotification;
 import dmax.dialog.SpotsDialog;
-import im.delight.android.location.SimpleLocation;
 import mehdi.sakout.fancybuttons.FancyButton;
 import util.android.textviews.FontTextView;
 
@@ -122,7 +116,8 @@ public class DashBoard extends AppCompatActivity
     TextView noInternet;
     private Context context;
 
-    private SimpleLocation location;
+    int counter = 1;
+
 
     final String [] states = new String[]{"Andra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat"
             ,"Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madya Pradesh","Maharashtra"
@@ -136,6 +131,12 @@ public class DashBoard extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
+        if (ActivityCompat.checkSelfPermission(DashBoard.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(DashBoard.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(DashBoard.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
+        }
+
+
         this.context = this;
 
         Intent alarm = new Intent(this.context, AlarmReceiver.class);
@@ -147,9 +148,6 @@ public class DashBoard extends AppCompatActivity
                 alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 300000, pendingIntent);
             }
         }
-
-
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -167,6 +165,8 @@ public class DashBoard extends AppCompatActivity
 
         ImageButton logout_btn = findViewById(R.id.app_bar_dash_logoutButton);
         logout_btn.setOnClickListener(this);
+
+
 
         nav_profileImageView = navigationView.getHeaderView(0).findViewById(R.id.header_profile_image);
         contact_uid_tv = navigationView.getHeaderView(0).findViewById(R.id.header_uid);
@@ -764,10 +764,19 @@ public class DashBoard extends AppCompatActivity
                                                                 dialog_scheduleTrip.dismiss();
                                                             }
                                                         });
+
+                                                        Alerter.create(DashBoard.this)
+                                                                .setTitle("Trip Started")
+                                                                .setContentGravity(1)
+                                                                .setBackgroundColorRes(R.color.black)
+                                                                .setIcon(R.drawable.success_icon)
+                                                                .show();
+                                                        dialog_scheduleTrip.dismiss();
+
+
                                                         Intent mIntent = getIntent();
                                                         finish();
                                                         startActivity(mIntent);
-                                                        dialog_scheduleTrip.dismiss();
 
                                                     }
 
@@ -856,20 +865,53 @@ public class DashBoard extends AppCompatActivity
         super.onStart();
 
 
-             dialog_updatingData.show();
+        if (counter == 1){
 
-               SharedPreferences shared = getSharedPreferences("firstLog", MODE_PRIVATE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    findViewById(R.id.dash_splash_logo).setVisibility(View.VISIBLE);
+                    YoYo.with(Techniques.Landing)
+                            .duration(1500)
+                            .repeat(0)
+                            .playOn(findViewById(R.id.dash_splash_logo));
 
-               try {
-                   contactUID_tx = (shared.getString("contact_uid", ""));
-                   String name = (shared.getString("profileName", ""));
-                   contact_uid_tv.setText(contactUID_tx);
-                   user_name_tv.setText(name);
-               } catch (NullPointerException e) {
-                   contactUID_tx = "";
-               }
 
-               if (!isNetworkAvailable()) {
+                }
+            },500);
+
+
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    YoYo.with(Techniques.FadeOut)
+                            .duration(1000)
+                            .repeat(0)
+                            .playOn(findViewById(R.id.dash_splash_relative));
+                    //  dialog_updatingData.show();
+                }
+            },3000);
+            counter++;
+        }
+
+
+
+
+
+        SharedPreferences shared = getSharedPreferences("firstLog", MODE_PRIVATE);
+
+        try {
+            contactUID_tx = (shared.getString("contact_uid", ""));
+            String name = (shared.getString("profileName", ""));
+            contact_uid_tv.setText(contactUID_tx);
+            user_name_tv.setText(name);
+        } catch (NullPointerException e) {
+            contactUID_tx = "";
+        }
+
+
+        if (!isNetworkAvailable()) {
                    noInternet.setVisibility(View.VISIBLE);
                    YoYo.with(Techniques.FadeIn)
                            .duration(3000)
@@ -934,6 +976,7 @@ public class DashBoard extends AppCompatActivity
                                        noInternet.setVisibility(View.GONE);
                                        header_text.setVisibility(View.VISIBLE);
                                        header_text.setText(header_text.getText()+" "+day+"-"+month+"-"+year+", "+hour+":"+minute);
+
                                    } catch (NullPointerException e) {
                                        e.printStackTrace();
                                    }
@@ -950,6 +993,7 @@ public class DashBoard extends AppCompatActivity
                                            tripPage_rl.setVisibility(View.VISIBLE);
                                            noInternet.setVisibility(View.GONE);
                                            dialog_updatingData.dismiss();
+
 
                                        } else {
                                            noInternet.setVisibility(View.GONE);
@@ -983,138 +1027,7 @@ public class DashBoard extends AppCompatActivity
                });
 
 
-               dataRef_spinner.child("truck_details").addListenerForSingleValueEvent(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(DataSnapshot dataSnapshot) {
-
-                       try {
-                           final List<String> areas = new ArrayList<String>();
-                           areas.add("Select Truck");
-                           for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                               String areaName = areaSnapshot.child("truck_number").getValue(String.class);
-                               areas.add(areaName);
-
-                           }
-                           ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
-                           ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
-
-                           areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           spinner_truckNumber.setAdapter(areasAdapter);
-                           truckNumber_act.setAdapter(areasAdapter1);
-
-                       } catch (NullPointerException e) {
-                           e.printStackTrace();
-                       }
-
-
-                   }
-
-                   @Override
-                   public void onCancelled(DatabaseError databaseError) {
-                       throw databaseError.toException();
-                   }
-               });
-
-
-               dataRef_spinner.child("pump_details").addListenerForSingleValueEvent(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(DataSnapshot dataSnapshot) {
-
-                       try {
-                           final List<String> areas = new ArrayList<>();
-                           areas.add("Select Location");
-                           for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                               String pump_name = areaSnapshot.child("pump_name").getValue(String.class);
-                               areas.add(pump_name);
-
-                           }
-
-                           ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
-                           ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
-
-                           areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           spinner_truckLocation.setAdapter(areasAdapter);
-                           truckLocation_act.setAdapter(areasAdapter1);
-
-                       } catch (NullPointerException e) {
-                           e.printStackTrace();
-                       }
-
-
-                   }
-
-                   @Override
-                   public void onCancelled(DatabaseError databaseError) {
-                       throw databaseError.toException();
-                   }
-               });
-
-
-               dataRef_spinner.child("pump_details").addListenerForSingleValueEvent(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(DataSnapshot dataSnapshot) {
-
-                       try {
-                           final List<String> areas = new ArrayList<>();
-                           areas.add("Select Location");
-                           for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                               String pump_name = areaSnapshot.child("pump_name").getValue(String.class);
-                               areas.add(pump_name);
-
-                           }
-
-                           ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
-                           ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
-
-                           areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           spinner_expectedStoppage.setAdapter(areasAdapter);
-                           expectedStoppage_act.setAdapter(areasAdapter1);
-
-                       } catch (NullPointerException e) {
-                           e.printStackTrace();
-                       }
-
-
-                   }
-
-                   @Override
-                   public void onCancelled(DatabaseError databaseError) {
-                       throw databaseError.toException();
-                   }
-               });
-
-        dataRef_spinner.child("pump_details").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                try {
-                    final List<String> areas = new ArrayList<>();
-                    areas.add("Select Location");
-                    for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                        String pump_name = areaSnapshot.child("pump_name").getValue(String.class);
-                        areas.add(pump_name);
-
-                    }
-
-                    ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
-                    ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
-
-                    areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner_tripLocation.setAdapter(areasAdapter);
-                    tripStartLocation_act.setAdapter(areasAdapter1);
-
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
+               SpinnerData();
 
 
         DatabaseReference d_notification = d_root.child("trip_schedules_driver").child(contactUID_tx);
@@ -1360,42 +1273,6 @@ public class DashBoard extends AppCompatActivity
 
     }
 
-    public double getLatitude(){
-
-        // construct a new instance of SimpleLocation
-        location = new SimpleLocation(this);
-
-        // if we can't access the location yet
-        if (!location.hasLocationEnabled()) {
-            // ask the user to enable location access
-            SimpleLocation.openSettings(this);
-        }
-
-
-        double latitude = location.getLatitude();
-        return latitude;
-
-
-    }
-
-
-    public double getLongitude(){
-
-        // construct a new instance of SimpleLocation
-        location = new SimpleLocation(this);
-
-        // if we can't access the location yet
-        if (!location.hasLocationEnabled()) {
-            // ask the user to enable location access
-            SimpleLocation.openSettings(this);
-        }
-
-
-        final double longitude = location.getLongitude();
-        return longitude;
-
-
-    }
 
 
     public void YoyoAnimations(){
@@ -1434,6 +1311,144 @@ public class DashBoard extends AppCompatActivity
                 .duration(2000)
                 .repeat(0)
                 .playOn(endTrip_btn);
+
+    }
+
+
+    public void SpinnerData(){
+
+        dataRef_spinner.child("truck_details").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                try {
+                    final List<String> areas = new ArrayList<String>();
+                    areas.add("Select Truck");
+                    for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                        String areaName = areaSnapshot.child("truck_number").getValue(String.class);
+                        areas.add(areaName);
+
+                    }
+                    ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
+                    ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
+
+                    areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_truckNumber.setAdapter(areasAdapter);
+                    truckNumber_act.setAdapter(areasAdapter1);
+
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+
+        dataRef_spinner.child("pump_details").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                try {
+                    final List<String> areas = new ArrayList<>();
+                    areas.add("Select Location");
+                    for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                        String pump_name = areaSnapshot.child("pump_name").getValue(String.class);
+                        areas.add(pump_name);
+
+                    }
+
+                    ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
+                    ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
+
+                    areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_truckLocation.setAdapter(areasAdapter);
+                    truckLocation_act.setAdapter(areasAdapter1);
+
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+
+        dataRef_spinner.child("pump_details").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                try {
+                    final List<String> areas = new ArrayList<>();
+                    areas.add("Select Location");
+                    for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                        String pump_name = areaSnapshot.child("pump_name").getValue(String.class);
+                        areas.add(pump_name);
+
+                    }
+
+                    ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
+                    ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
+
+                    areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_expectedStoppage.setAdapter(areasAdapter);
+                    expectedStoppage_act.setAdapter(areasAdapter1);
+
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+        dataRef_spinner.child("pump_details").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                try {
+                    final List<String> areas = new ArrayList<>();
+                    areas.add("Select Location");
+                    for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                        String pump_name = areaSnapshot.child("pump_name").getValue(String.class);
+                        areas.add(pump_name);
+
+                    }
+
+                    ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_spinner_item, areas);
+                    ArrayAdapter<String> areasAdapter1 = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_1, areas);
+
+                    areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_tripLocation.setAdapter(areasAdapter);
+                    tripStartLocation_act.setAdapter(areasAdapter1);
+
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
 
     }
 

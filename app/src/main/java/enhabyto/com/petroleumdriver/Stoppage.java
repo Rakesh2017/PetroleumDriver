@@ -228,7 +228,7 @@ public class Stoppage extends Fragment {
                                                 List<Address> addresses;
                                                 addresses = geocoder.getFromLocation(getLatitude(),getLongitude(), 1);
                                                 gps_address = addresses.get(0).getAddressLine(0);
-                                            } catch (IOException e) {
+                                            } catch (IOException | IndexOutOfBoundsException e) {
 
                                                 e.printStackTrace();
                                             }

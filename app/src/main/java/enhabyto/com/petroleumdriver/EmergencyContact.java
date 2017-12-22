@@ -201,44 +201,54 @@ public class EmergencyContact extends Fragment {
 
     public void setData(){
 
-        if (!contact1_tx.isEmpty()) {
-            r1.setVisibility(View.VISIBLE);
-            YoYo.with(Techniques.Landing)
-                    .duration(3000)
-                    .repeat(0)
-                    .playOn(r1);
-            contact1_et.setText(contact1_tx);
-            view.findViewById(R.id.emergency_text).setVisibility(View.GONE);
+
+        try {
+
+            if (!contact1_tx.isEmpty()) {
+                r1.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.Landing)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn(r1);
+                contact1_et.setText(contact1_tx);
+                view.findViewById(R.id.emergency_text).setVisibility(View.GONE);
+            }
+
+            if (!contact2_tx.isEmpty()) {
+                r2.setVisibility(View.VISIBLE);
+                r1.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.Landing)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn(r2);
+                contact2_et.setText(contact2_tx);
+                view.findViewById(R.id.emergency_text).setVisibility(View.GONE);
+            }
+
+            if (!contact3_tx.isEmpty()) {
+                r3.setVisibility(View.VISIBLE);
+                r1.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.Landing)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn(r3);
+                contact3_et.setText(contact3_tx);
+                view.findViewById(R.id.emergency_text).setVisibility(View.GONE);
+            }
+
+            if (contact1_tx.isEmpty() && contact2_tx.isEmpty() && contact3_tx.isEmpty()) {
+                view.findViewById(R.id.emergency_text).setVisibility(View.VISIBLE);
+                r1.setVisibility(View.GONE);
+                r2.setVisibility(View.GONE);
+                r3.setVisibility(View.GONE);
+            }
+
+
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
         }
 
-        if (!contact2_tx.isEmpty()) {
-            r2.setVisibility(View.VISIBLE);
-            r1.setVisibility(View.VISIBLE);
-            YoYo.with(Techniques.Landing)
-                    .duration(3000)
-                    .repeat(0)
-                    .playOn(r2);
-            contact2_et.setText(contact2_tx);
-            view.findViewById(R.id.emergency_text).setVisibility(View.GONE);
-        }
-
-        if (!contact3_tx.isEmpty()) {
-            r3.setVisibility(View.VISIBLE);
-            r1.setVisibility(View.VISIBLE);
-            YoYo.with(Techniques.Landing)
-                    .duration(3000)
-                    .repeat(0)
-                    .playOn(r3);
-            contact3_et.setText(contact3_tx);
-            view.findViewById(R.id.emergency_text).setVisibility(View.GONE);
-        }
-
-        if (contact1_tx.isEmpty() && contact2_tx.isEmpty() && contact3_tx.isEmpty()) {
-            view.findViewById(R.id.emergency_text).setVisibility(View.VISIBLE);
-            r1.setVisibility(View.GONE);
-            r2.setVisibility(View.GONE);
-            r3.setVisibility(View.GONE);
-        }
 
 
         dialog.dismiss();

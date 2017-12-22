@@ -11,9 +11,17 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     tools:showIn="@layout/app_bar_dash_board">
 
+
+
+
+
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -474,7 +482,7 @@
                     android:textColor="@color/black"
                     android:text="Trip started on"
                     android:visibility="invisible"
-                    android:background="@drawable/rounded_edit_text_black"
+                    android:background="@drawable/round_header"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:layout_marginTop="4dp"
@@ -504,12 +512,12 @@
                         android:id="@+id/dash_stoppageButton"
                         android:layout_below="@+id/dash_tripDateTextView"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         grid:layout_columnWeight="1"
-                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_fontIconSize="55sp"
                         fancy:fb_borderColor="@color/black"
                         fancy:fb_borderWidth="2dp"
-                        fancy:fb_defaultColor="@color/lightCoral"
+                        fancy:fb_defaultColor="@color/appColor"
                         fancy:fb_focusColor="@color/white"
                         fancy:fb_iconPosition="bottom"
                         fancy:fb_radius="3dp"
@@ -522,14 +530,14 @@
                         android:id="@+id/dash_petrolFillingButton"
                         android:layout_below="@+id/dash_tripDateTextView"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         grid:layout_columnWeight="1"
-                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_fontIconSize="55sp"
                         android:layout_alignParentEnd="true"
                         android:padding="10dp"
                         fancy:fb_borderColor="@color/black"
                         fancy:fb_borderWidth="2dp"
-                        fancy:fb_defaultColor="@color/paleGold"
+                        fancy:fb_defaultColor="@color/appColor"
                         fancy:fb_focusColor="@color/white"
                         fancy:fb_iconPosition="bottom"
                         fancy:fb_iconPaddingTop="5dp"
@@ -544,15 +552,15 @@
                         android:id="@+id/dash_otherFillingButton"
                         android:layout_below="@+id/dash_stoppageButton"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         grid:layout_columnWeight="1"
                         grid:layout_gravity="fill_horizontal"
                         android:gravity="center"
                         android:padding="10dp"
-                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_fontIconSize="55sp"
                         fancy:fb_borderColor="@color/black"
                         fancy:fb_borderWidth="2dp"
-                        fancy:fb_defaultColor="@color/powderBlue"
+                        fancy:fb_defaultColor="@color/appColor"
                         fancy:fb_focusColor="@color/white"
                         fancy:fb_iconPosition="bottom"
                         fancy:fb_radius="3dp"
@@ -565,37 +573,37 @@
                         android:id="@+id/dash_loadButton"
                         android:layout_below="@+id/dash_stoppageButton"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         grid:layout_columnWeight="1"
                         grid:layout_gravity="fill_horizontal"
                         android:gravity="center"
                         android:layout_alignParentEnd="true"
                         android:padding="10dp"
-                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_fontIconSize="55sp"
                         fancy:fb_borderColor="@color/black"
                         fancy:fb_borderWidth="2dp"
-                        fancy:fb_defaultColor="@color/bisque"
+                        fancy:fb_defaultColor="@color/appColor"
                         fancy:fb_focusColor="@color/white"
                         fancy:fb_iconPosition="bottom"
                         fancy:fb_radius="3dp"
                         fancy:fb_iconPaddingTop="5dp"
                         fancy:fb_fontIconResource="&#xf160;"
-                        fancy:fb_text="Load \ NnLoad"
+                        fancy:fb_text="Load \ UnLoad"
                         fancy:fb_textColor="@color/black"/>
 
                     <mehdi.sakout.fancybuttons.FancyButton
                         android:id="@+id/dash_breakDownButton"
                         android:layout_below="@+id/dash_loadButton"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         grid:layout_columnWeight="1"
                         grid:layout_gravity="fill_horizontal"
                         android:gravity="center"
                         android:padding="10dp"
                         fancy:fb_borderColor="@color/black"
                         fancy:fb_borderWidth="2dp"
-                        fancy:fb_fontIconSize="45sp"
-                        fancy:fb_defaultColor="@color/plum"
+                        fancy:fb_fontIconSize="55sp"
+                        fancy:fb_defaultColor="@color/appColor"
                         fancy:fb_focusColor="@color/white"
                         fancy:fb_iconPosition="bottom"
                         fancy:fb_radius="3dp"
@@ -608,16 +616,16 @@
                         android:id="@+id/dash_endTripButton"
                         android:layout_below="@+id/dash_loadButton"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         grid:layout_columnWeight="1"
                         grid:layout_gravity="fill_horizontal"
                         android:gravity="center"
                         android:layout_alignParentEnd="true"
                         android:padding="10dp"
-                        fancy:fb_fontIconSize="45sp"
+                        fancy:fb_fontIconSize="55sp"
                         fancy:fb_borderColor="@color/black"
                         fancy:fb_borderWidth="2dp"
-                        fancy:fb_defaultColor="@color/lightRed"
+                        fancy:fb_defaultColor="@color/appColor"
                         fancy:fb_focusColor="@color/white"
                         fancy:fb_iconPosition="bottom"
                         fancy:fb_radius="3dp"
@@ -668,7 +676,35 @@
 
 
 
+
     </android.support.v4.widget.NestedScrollView>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/dash_splash_relative"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/brown_splash"
+
+            />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@drawable/app_background_splash"
+            android:layout_centerInParent="true"
+            android:id="@+id/dash_splash_logo"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+
 
 </FrameLayout>
 

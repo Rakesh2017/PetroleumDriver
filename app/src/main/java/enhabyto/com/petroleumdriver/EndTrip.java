@@ -275,19 +275,20 @@ public class EndTrip extends Fragment {
 
                                                 d_root.child("trip_status").child(key).setValue(null);
 
-
-                                                Intent mIntent = getActivity().getIntent();
-                                                getActivity().finish();
-                                                startActivity(mIntent);
-
-
                                                 Alerter.create(getActivity())
                                                         .setTitle("Trip Ended")
                                                         .setContentGravity(1)
                                                         .setBackgroundColorRes(R.color.black)
                                                         .setIcon(R.drawable.success_icon)
                                                         .show();
+
                                                 dialog_endingTrip.dismiss();
+
+                                                Intent mIntent = getActivity().getIntent();
+                                                getActivity().finish();
+                                                startActivity(mIntent);
+
+
 
 
                                             }

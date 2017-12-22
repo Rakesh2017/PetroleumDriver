@@ -4,9 +4,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -41,6 +45,10 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+
+
 
 
         contact_et = findViewById(R.id.login_contactEditText);
@@ -186,9 +194,15 @@ public class Login extends AppCompatActivity {
 
         SharedPreferences dataSave = getSharedPreferences("firstLog", 0);
 
-        if(dataSave.getString("LaunchApplication","keys").equals("DashBoard")){
-            Intent intent = new Intent(Login.this, DashBoard.class);
-            startActivity(intent);
+        try {
+            if(dataSave.getString("LaunchApplication","keys").equals("DashBoard")){
+                Intent intent = new Intent(Login.this, DashBoard.class);
+                startActivity(intent);
+            }
+
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
         }
 
     }

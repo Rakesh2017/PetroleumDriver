@@ -2,15 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="enhabyto.com.petroleumdriver">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-feature android:name="android.hardware.location.gps"/>
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -19,36 +20,37 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login"
-            android:screenOrientation = "portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            >
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+        </activity>
+        <activity
+            android:name=".DashBoard"
+            android:label="@string/title_activity_dash_board"
+            android:screenOrientation="portrait"
+            android:theme="@style/DashBoardTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".TripSchedules"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/DashBoardTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <service android:name=".BackgroundService" />
+
+        <receiver android:name=".AlarmReceiver" />
+
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-
-
-        <activity
-            android:name=".DashBoard"
-            android:label="@string/title_activity_dash_board"
-            android:theme="@style/DashBoardTheme"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:screenOrientation = "portrait"
-            />
-        <activity android:name=".TripSchedules"
-            android:theme="@style/DashBoardTheme"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:screenOrientation = "portrait"
-            android:noHistory="true"
-            />
-
-
-        <service android:name=".BackgroundService" />
-        <receiver android:name="AlarmReceiver"/>
-
     </application>
 
 </manifest>
