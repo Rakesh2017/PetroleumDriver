@@ -29,7 +29,7 @@
             android:id="@+id/load_Button"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginStart="16dp"
             fancy:fb_borderColor="@color/black"
             fancy:fb_borderWidth="2dp"
@@ -48,7 +48,7 @@
             android:id="@+id/unload_Button"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             fancy:fb_fontIconSize="40sp"
             android:layout_alignParentEnd="true"
             android:padding="10dp"
@@ -70,7 +70,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_relative1"
-            android:layout_marginTop="16dp"
             android:id="@+id/load_relative"
             android:visibility="gone"
             >
@@ -242,7 +241,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/header_relative1"
-        android:layout_marginTop="16dp"
         android:id="@+id/unload_relative"
         android:visibility="gone"
         >

@@ -343,7 +343,7 @@ public class DashBoard extends AppCompatActivity
 
 
 
-        SharedPreferences shared = getSharedPreferences("firstLog", MODE_PRIVATE);
+       SharedPreferences shared = getSharedPreferences("firstLog", MODE_PRIVATE);
 
         try{
             contactUID_tx = (shared.getString("contact_uid", ""));
@@ -352,7 +352,7 @@ public class DashBoard extends AppCompatActivity
             contactUID_tx  = "";
         }
 
-        if (!isNetworkAvailable()){
+        /* if (!isNetworkAvailable()){
             Alerter.create(DashBoard.this)
                     .setTitle("No Internet Connection!")
                     .setText("Some Modules may not work")
@@ -360,7 +360,7 @@ public class DashBoard extends AppCompatActivity
                     .setBackgroundColorRes(R.color.black)
                     .setIcon(R.drawable.no_internet)
                     .show();
-        }
+        }*/
 
 
 
@@ -883,10 +883,10 @@ public class DashBoard extends AppCompatActivity
                 @Override
                 public void run() {
                     YoYo.with(Techniques.FadeOut)
-                            .duration(1000)
+                            .duration(500)
                             .repeat(0)
                             .playOn(findViewById(R.id.dash_splash_relative));
-                    //  dialog_updatingData.show();
+                            dialog_updatingData.show();
                 }
             },3000);
             counter++;
@@ -924,7 +924,15 @@ public class DashBoard extends AppCompatActivity
                                .diskCacheStrategy(DiskCacheStrategy.ALL)
                                .into(nav_profileImageView);}
 
-                   dialog_updatingData.dismiss();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (noInternet.getVisibility() == View.VISIBLE ){
+                        dialog_updatingData.dismiss();
+                    }
+
+                }
+            },3000);
                    return;
                }
 
@@ -1152,6 +1160,18 @@ public class DashBoard extends AppCompatActivity
             }
         });
 
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (tripPage_rl.getVisibility() == View.VISIBLE ){
+                    dialog_updatingData.dismiss();
+                }
+
+            }
+        },3000);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1174,7 +1194,7 @@ public class DashBoard extends AppCompatActivity
                     dialog_updatingData.dismiss();
                 }
             }
-        },12000);
+        },15000);
 
 
 

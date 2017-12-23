@@ -483,8 +483,8 @@
                     android:text="Trip started on"
                     android:visibility="invisible"
                     android:background="@drawable/round_header"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginTop="4dp"
                     />
 

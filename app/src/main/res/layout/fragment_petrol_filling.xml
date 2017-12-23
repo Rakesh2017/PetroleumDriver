@@ -16,6 +16,7 @@
         android:background="@color/white"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:id="@+id/petrol_mainRelative"
         >
 
 
@@ -167,7 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="droidsansbold.ttf"
-            android:text="Money Paid"
+            android:text="Petrol Rate / Litre"
             android:textStyle="bold"
             android:textColor="@color/teal"
             android:textSize="18sp" />
@@ -185,7 +186,7 @@
             android:inputType="number"
             android:drawableStart="@drawable/rupee_logo_mini"
             android:drawablePadding="7dp"
-            android:maxLength="5"
+            android:maxLength="3"
             android:gravity="center"
             android:padding="7dp"
             />

@@ -30,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -113,6 +115,8 @@ public class PetrolFilling extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_petrol_filling, container, false);
 
+
+
         pumpName_et = view.findViewById(R.id.petrol_pumpNameEditText);
         pump_address_et = view.findViewById(R.id.petrol_locationNameEditText);
         stateName_et = view.findViewById(R.id.petrol_stateNameEditText);
@@ -195,7 +199,7 @@ public class PetrolFilling extends Fragment {
 
                 if (pumpName_tx.length()<3){
                     Alerter.create(getActivity())
-                            .setTitle("Provide full name of Pump!")
+                            .setTitle("Enter full name of Pump!")
                             .setContentGravity(1)
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
@@ -205,7 +209,7 @@ public class PetrolFilling extends Fragment {
 
                 if (TextUtils.isEmpty(pump_token_tx)){
                     Alerter.create(getActivity())
-                            .setTitle("Provide Token Number!")
+                            .setTitle("Enter Token Number!")
                             .setContentGravity(1)
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
@@ -215,7 +219,7 @@ public class PetrolFilling extends Fragment {
 
                 if (TextUtils.isEmpty(petrolFilled_tx)){
                     Alerter.create(getActivity())
-                            .setTitle("Provide Petrol filled!")
+                            .setTitle("Enter Petrol filled!")
                             .setContentGravity(1)
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
@@ -228,7 +232,7 @@ public class PetrolFilling extends Fragment {
 
                 if (TextUtils.isEmpty(moneyPaid_tx)){
                     Alerter.create(getActivity())
-                            .setTitle("Enter Money Paid!")
+                            .setTitle("Enter Petrol Rate!")
                             .setContentGravity(1)
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
@@ -274,14 +278,15 @@ public class PetrolFilling extends Fragment {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
 
+                                            int total = Integer.parseInt(moneyPaid_tx) * Integer.parseInt(petrolFilled_tx);
 
                                             String latitude = String.valueOf(getLatitude());
                                             String longitude = String.valueOf(getLongitude());
                                             Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                                             String gps_address="";
-                                            List<Address> addresses;
-                                            try {
 
+                                            try {
+                                                List<Address> addresses = null;
                                                 addresses = geocoder.getFromLocation(getLatitude(),getLongitude(), 1);
                                                 gps_address = addresses.get(0).getAddressLine(0);
                                             } catch (IOException | IndexOutOfBoundsException e) {
@@ -301,10 +306,10 @@ public class PetrolFilling extends Fragment {
                                             d_petrol_filling_details.child(secondKey).child("money_paid").setValue(moneyPaid_tx);
                                             d_petrol_filling_details.child(secondKey).child("petrol_filled").setValue(petrolFilled_tx);
                                             d_petrol_filling_details.child(secondKey).child("token_number").setValue(pump_token_tx);
-                                            Log.w("longitude", longitude);
                                             d_petrol_filling_details.child(secondKey).child("gps_latitude").setValue(latitude);
                                             d_petrol_filling_details.child(secondKey).child("gps_longitude").setValue(longitude);
                                             d_petrol_filling_details.child(secondKey).child("gps_location").setValue(gps_address);
+                                            d_petrol_filling_details.child(secondKey).child("total_money").setValue(String.valueOf(total));
 
                                             d_petrol_filling_details.child(secondKey).child("date_time").setValue(actualDate+"_"+actualTime);
 
@@ -425,6 +430,7 @@ public class PetrolFilling extends Fragment {
 
      public void onStart(){
         super.onStart();
+
          DatabaseReference dataRef_spinner = FirebaseDatabase.getInstance().getReference();
          dataRef_spinner.child("pump_details").addListenerForSingleValueEvent(new ValueEventListener() {
              @Override
@@ -542,8 +548,7 @@ public class PetrolFilling extends Fragment {
         }
 
 
-        double latitude = location.getLatitude();
-        return latitude;
+        return location.getLatitude();
 
 
     }
@@ -561,8 +566,7 @@ public class PetrolFilling extends Fragment {
         }
 
 
-        final double longitude = location.getLongitude();
-        return longitude;
+        return location.getLongitude();
 
 
     }

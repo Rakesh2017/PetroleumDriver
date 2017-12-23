@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity {
 
                 if (password_tx.length()<5){
                     Alerter.create(Login.this)
-                            .setTitle("Length of Password is grater than 5")
+                            .setTitle("Length of Password should greater than 5")
                             .setContentGravity(1)
                             .setBackgroundColorRes(R.color.blackFifty)
                             .setIcon(R.drawable.error)
