@@ -47,6 +47,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
@@ -89,8 +91,10 @@ public class DashBoard extends AppCompatActivity
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://rajpetroleum-4d3fa.appspot.com/");
-    FancyButton startNewTrip_btn, cancelTrip_btn, startTrip_btn, back_btn;
+    FancyButton startNewTrip_btn, cancelTrip_btn, startTrip_btn;
     RelativeLayout startNewTrip_rl, startTrip_rl, tripPage_rl;
+
+    ImageButton back_btn;
 
     FancyButton stoppage_btn, petrolFilling_btn, otherFilling_btn, load_btn
             , breakDown_btn, endTrip_btn;
@@ -615,6 +619,19 @@ public class DashBoard extends AppCompatActivity
                     return;
                 }
 
+                if (expensesTaken_tx.isEmpty() ){
+                    Alerter.create(DashBoard.this)
+                            .setTitle("Enter Money Taken")
+                            .setText("if no money taken then enter 0")
+                            .setContentGravity(1)
+                            .setBackgroundColorRes(R.color.black)
+                            .setIcon(R.drawable.error)
+                            .show();
+                    dialog_scheduleTrip.dismiss();
+                    return;
+                }
+
+
                 if (TextUtils.equals(expected_stoppage_tx, "")){
                     Alerter.create(DashBoard.this)
                             .setTitle("Enter Expected Stoppage!")
@@ -626,7 +643,7 @@ public class DashBoard extends AppCompatActivity
                     return;
                 }
 
-                if (!fuelTaken_tx.isEmpty()){
+
                     if (fuelPrice_tx.isEmpty() ){
                         Alerter.create(DashBoard.this)
                                 .setTitle("Enter Fuel Price!")
@@ -638,13 +655,13 @@ public class DashBoard extends AppCompatActivity
                         dialog_scheduleTrip.dismiss();
                         return;
                     }
-                }
 
-                if (!fuelPrice_tx.isEmpty()){
+
+
                     if (fuelTaken_tx.isEmpty() ){
                         Alerter.create(DashBoard.this)
                                 .setTitle("Enter Fuel Taken")
-                                .setText("You have to provide the fuel filled in Truck")
+                                .setText("You have to provide the fuel filled in Truck, if not enter 0")
                                 .setContentGravity(1)
                                 .setBackgroundColorRes(R.color.black)
                                 .setIcon(R.drawable.error)
@@ -652,7 +669,7 @@ public class DashBoard extends AppCompatActivity
                         dialog_scheduleTrip.dismiss();
                         return;
                     }
-                }
+
 
                 new MaterialDialog.Builder(DashBoard.this)
                         .title("Confirm Trip Details")
@@ -933,7 +950,7 @@ public class DashBoard extends AppCompatActivity
 
                 }
             },3000);
-                   return;
+                 return;
                }
 
         d_networkStatus.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -1032,7 +1049,7 @@ public class DashBoard extends AppCompatActivity
                });
 
 
-               SpinnerData();
+        SpinnerData();
 
 
         DatabaseReference d_notification = d_root.child("trip_schedules_driver").child(contactUID_tx);
@@ -1165,7 +1182,7 @@ public class DashBoard extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (tripPage_rl.getVisibility() == View.VISIBLE ){
+                if (tripPage_rl.getVisibility() == View.VISIBLE || startNewTrip_btn.getVisibility() == View.VISIBLE){
                     dialog_updatingData.dismiss();
                 }
 

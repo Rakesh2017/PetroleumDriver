@@ -33,23 +33,14 @@
 
 
 
-
-
-        <mehdi.sakout.fancybuttons.FancyButton
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/home_icon"
             android:id="@+id/schedule_backButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
             android:layout_alignTop="@id/schedule_stateTextView"
-            android:padding="1dp"
-            fancy:fb_borderColor="@color/black"
-            fancy:fb_borderWidth="1dp"
-            fancy:fb_defaultColor="@color/powderBlue"
-            fancy:fb_focusColor="@color/white"
-            fancy:fb_iconPosition="bottom"
-            fancy:fb_radius="64dp"
-            fancy:fb_text="home"
-            fancy:fb_fontIconResource="&#xf015;"
-            fancy:fb_textColor="@color/black"/>
+            />
+
 
         <util.android.textviews.FontTextView
             android:id="@+id/schedule_headerTextView"

@@ -106,21 +106,14 @@
             android:textColor="@color/black"
             android:textSize="24sp" />
 
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/dash_backButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/round_back_icon"
             android:layout_alignTop="@id/dash_text1"
-            android:padding="3dp"
-            fancy:fb_borderColor="@color/black"
-            fancy:fb_borderWidth="1dp"
-            fancy:fb_defaultColor="@color/powderBlue"
-            fancy:fb_focusColor="@color/white"
-            fancy:fb_iconPosition="bottom"
-            fancy:fb_radius="64dp"
-            fancy:fb_text="back"
-            fancy:fb_fontIconResource="&#xf060;"
-            fancy:fb_textColor="@color/black"/>
+            android:id="@+id/dash_backButton"
+            />
 
 
 
