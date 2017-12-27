@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferences dataSave = getSharedPreferences("firstLog", 0);
 
         try {
-            if(dataSave.getString("LaunchApplication","keys").equals("DashBoard")){
+            if(dataSave.getString("LaunchApplication","").equals("DashBoard")){
                 Intent intent = new Intent(SplashScreen.this, DashBoard.class);
                 startActivity(intent);
             }
@@ -47,6 +47,13 @@ public class SplashScreen extends AppCompatActivity {
 
         button = findViewById(R.id.splash_submitButton);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkPermissions();
+            }
+        });
+
         YoYo.with(Techniques.Landing)
                 .duration(3000)
                 .repeat(0)
@@ -58,18 +65,6 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
 
-
-                button = findViewById(R.id.splash_submitButton);
-
-
-
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        checkPermissions();
-                    }
-                });
 
                 button.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.FadeIn)

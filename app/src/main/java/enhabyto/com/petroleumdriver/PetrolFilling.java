@@ -76,11 +76,11 @@ public class PetrolFilling extends Fragment {
     AutoCompleteTextView stateName_et;
     AutoCompleteTextView pumpName_et;
     EditText  pump_address_et, moneyPaid_et, petrolFilled_et, pump_token_et;
-    String pumpName_tx, pump_address_tx, stateName_tx, moneyPaid_tx, petrolFilled_tx, pump_token_tx;
+    String pumpName_tx, pump_address_tx, stateName_tx, moneyPaid_tx, petrolFilled_tx, pump_token_tx, actualFuelRate;
 
     FancyButton submit, select_image, cancel_image;
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReferenceFromUrl("gs://rajpetroleum-4d3fa.appspot.com/");
+    StorageReference storageRef = storage.getReference();
 
     private DatabaseReference d_root = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference d_petrol_filling_details;
@@ -94,7 +94,7 @@ public class PetrolFilling extends Fragment {
     AlertDialog dialog_uploading;
     ImageView bill_img;
 
-    private  String key, secondKey;
+    private  String key, secondKey, pumpDateTime;
     int size;
 
     Spinner spinner;
@@ -179,6 +179,8 @@ public class PetrolFilling extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                dialog_petrol.show();
                 pumpName_tx = pumpName_et.getText().toString().trim();
                 pump_address_tx = pump_address_et.getText().toString().trim();
                 stateName_tx = stateName_et.getText().toString().trim();
@@ -194,6 +196,7 @@ public class PetrolFilling extends Fragment {
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.no_internet)
                             .show();
+                    dialog_petrol.dismiss();
                     return;
                 }
 
@@ -204,6 +207,7 @@ public class PetrolFilling extends Fragment {
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
                             .show();
+                    dialog_petrol.dismiss();
                     return;
                 }
 
@@ -214,6 +218,7 @@ public class PetrolFilling extends Fragment {
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
                             .show();
+                    dialog_petrol.dismiss();
                     return;
                 }
 
@@ -224,6 +229,7 @@ public class PetrolFilling extends Fragment {
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
                             .show();
+                    dialog_petrol.dismiss();
                     return;
                 }
 
@@ -237,6 +243,7 @@ public class PetrolFilling extends Fragment {
                             .setBackgroundColorRes(R.color.black)
                             .setIcon(R.drawable.error)
                             .show();
+                    dialog_petrol.dismiss();
                     return;
                 }
 
@@ -244,7 +251,7 @@ public class PetrolFilling extends Fragment {
                 d_networkStatus.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        dialog_petrol.show();
+
                         connected = dataSnapshot.getValue(String.class);
 
                         if (!TextUtils.equals(connected, "connected")){
@@ -267,12 +274,21 @@ public class PetrolFilling extends Fragment {
                                     //  trip_check = child.child("status").getValue().toString();
 
                                     key = child.getKey();
-                                    Log.w("432", key);
+
 
                                     d_petrol_filling_details = d_root.child("trip_details").child(contactUID_tx)
                                             .child(key).child("petrol_filled");
 
                                     secondKey = d_petrol_filling_details.push().getKey();
+
+                                    d_root.child("fuel_rate").child(pumpName_tx)
+                                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    actualFuelRate = dataSnapshot.child("current_rate").getValue(String.class);
+                                                    pumpDateTime = dataSnapshot.child("updated_on").getValue(String.class);
+
+
 
                                     d_petrol_filling_details.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
@@ -310,10 +326,10 @@ public class PetrolFilling extends Fragment {
                                             d_petrol_filling_details.child(secondKey).child("gps_longitude").setValue(longitude);
                                             d_petrol_filling_details.child(secondKey).child("gps_location").setValue(gps_address);
                                             d_petrol_filling_details.child(secondKey).child("total_money").setValue(String.valueOf(total));
+                                            d_petrol_filling_details.child(secondKey).child("pump_fuel_rate").setValue(actualFuelRate);
+                                            d_petrol_filling_details.child(secondKey).child("pump_fuel_rate_date").setValue(pumpDateTime);
 
                                             d_petrol_filling_details.child(secondKey).child("date_time").setValue(actualDate+"_"+actualTime);
-
-
 
 
                                             Alerter.create(getActivity())
@@ -324,6 +340,16 @@ public class PetrolFilling extends Fragment {
                                                     .show();
                                             UploadImageFileToFirebaseStorage();
                                             dialog_petrol.dismiss();
+
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
 
                                         }
 
