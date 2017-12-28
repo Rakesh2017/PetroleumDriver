@@ -146,7 +146,7 @@ public class DashBoard extends AppCompatActivity
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this.context, 0, alarm, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             if (alarmManager != null) {
-                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 300000, pendingIntent);
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 420000, pendingIntent);
             }
         }
 
@@ -670,64 +670,63 @@ public class DashBoard extends AppCompatActivity
                         return;
                     }
 
+                    dataRef_spinner.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.child("trip_schedules_driver").hasChild(contactUID_tx)){
+                                Alerter.create(DashBoard.this)
+                                        .setTitle("Cannot Start Trip")
+                                        .setText("Trip is Scheduled to you, first reject/accept that trip")
+                                        .setContentGravity(1)
+                                        .setBackgroundColorRes(R.color.black)
+                                        .setIcon(R.drawable.error)
+                                        .show();
+                                dialog_scheduleTrip.dismiss();
+                            }
+                            else {
+                                //start trip
 
-                new MaterialDialog.Builder(DashBoard.this)
-                        .title("Confirm Trip Details")
-                        .content("Truck Number: "+ truckNumber_tx
-                                + "\n\nTruck Location: " + truckLocation_tx
-                                + "\n\nTrip Start Location: " + tripStartLocation_tx
-                                + "\n\nExpected Stoppage: "+ expected_stoppage_tx
-                                + "\n\nFuel Taken: "+ fuelTaken_tx +"/Litres"
-                                + "\n\nFuel Price: Rs"+ fuelPrice_tx +"/Litre"
-                                + "\n\nMoney Taken: Rs"+ expensesTaken_tx
-                                + "\n\nState Name: "+ stateName_tx
-                                + "\n\nCity Name: "+ cityName_tx
-                        )
-                        .positiveText("Yes")
-                        .contentColor(getResources().getColor(R.color.blackNinety))
-                        .positiveColor(getResources().getColor(R.color.lightGreen))
-                        .negativeText("No")
-                        .negativeColor(getResources().getColor(R.color.lightRed))
-                        .onPositive(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
+                                new MaterialDialog.Builder(DashBoard.this)
+                                        .title("Confirm Trip Details")
+                                        .content("Truck Number: "+ truckNumber_tx
+                                                + "\n\nTruck Location: " + truckLocation_tx
+                                                + "\n\nTrip Start Location: " + tripStartLocation_tx
+                                                + "\n\nExpected Stoppage: "+ expected_stoppage_tx
+                                                + "\n\nFuel Taken: "+ fuelTaken_tx +"/Litres"
+                                                + "\n\nFuel Price: Rs"+ fuelPrice_tx +"/Litre"
+                                                + "\n\nMoney Taken: Rs"+ expensesTaken_tx
+                                                + "\n\nState Name: "+ stateName_tx
+                                                + "\n\nCity Name: "+ cityName_tx
+                                        )
+                                        .positiveText("Yes")
+                                        .contentColor(getResources().getColor(R.color.blackNinety))
+                                        .positiveColor(getResources().getColor(R.color.lightGreen))
+                                        .negativeText("No")
+                                        .negativeColor(getResources().getColor(R.color.lightRed))
+                                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                            @Override
+                                            public void onClick(@NonNull final MaterialDialog dialog, @NonNull final DialogAction which) {
 
-                                if(!isNetworkAvailable()){
-                                    Alerter.create(DashBoard.this)
-                                            .setTitle("No Internet Connection!")
-                                            .setContentGravity(1)
-                                            .setBackgroundColorRes(R.color.black)
-                                            .setIcon(R.drawable.no_internet)
-                                            .show();
-                                    dialog_scheduleTrip.dismiss();
-                                    return;
-                                }
+                                                if(!isNetworkAvailable()){
+                                                    Alerter.create(DashBoard.this)
+                                                            .setTitle("No Internet Connection!")
+                                                            .setContentGravity(1)
+                                                            .setBackgroundColorRes(R.color.black)
+                                                            .setIcon(R.drawable.no_internet)
+                                                            .show();
+                                                    dialog_scheduleTrip.dismiss();
+                                                    return;
+                                                }
 
-                                d_networkStatus.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        connected = dataSnapshot.getValue(String.class);
+                                                d_networkStatus.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        connected = dataSnapshot.getValue(String.class);
 
-
-                                        if (!TextUtils.equals(connected, "connected")){
-                                            Alerter.create(DashBoard.this)
-                                                    .setTitle("Unable to connect to server!")
-                                                    .setContentGravity(1)
-                                                    .setBackgroundColorRes(R.color.black)
-                                                    .setIcon(R.drawable.error)
-                                                    .show();
-                                            dialog_scheduleTrip.dismiss();
-                                            return;
-                                        }
-
-
-                                                new Handler().postDelayed(new Runnable() {
-                                                    public void run() {
 
                                                         if (!TextUtils.equals(connected, "connected")){
                                                             Alerter.create(DashBoard.this)
-                                                                    .setTitle("Unable to connect Server!")
-                                                                    .setText("We get time from internet and it needs decent internet connection. Please check if internet working.")
+                                                                    .setTitle("Unable to connect to server!")
                                                                     .setContentGravity(1)
                                                                     .setBackgroundColorRes(R.color.black)
                                                                     .setIcon(R.drawable.error)
@@ -736,94 +735,186 @@ public class DashBoard extends AppCompatActivity
                                                             return;
                                                         }
 
-                                                        Calendar c = Calendar.getInstance();
-                                                        SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy");
-                                                        SimpleDateFormat sdf1 = new SimpleDateFormat("HH_mm");
-                                                        actualDate = sdf.format(c.getTime());
-                                                        actualTime = sdf1.format(c.getTime());
+
+                                                        new Handler().postDelayed(new Runnable() {
+                                                            public void run() {
+
+                                                                if (!TextUtils.equals(connected, "connected")){
+                                                                    Alerter.create(DashBoard.this)
+                                                                            .setTitle("Unable to connect Server!")
+                                                                            .setContentGravity(1)
+                                                                            .setBackgroundColorRes(R.color.black)
+                                                                            .setIcon(R.drawable.error)
+                                                                            .show();
+                                                                    dialog_scheduleTrip.dismiss();
+                                                                    return;
+                                                                }
 
 
-                                                        final String key = d_root.push().getKey();
+                                                                dataRef_spinner.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                    @Override
+                                                                    public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                                                        d_schedule_trip = d_root.child("trip_details").child(contactUID_tx).child(key).child("start_trip");
 
-                                                        d_schedule_trip.child("truck_number").setValue(truckNumber_tx);
-                                                        d_schedule_trip.child("truck_location").setValue(truckLocation_tx);
-                                                        d_schedule_trip.child("expenses_taken").setValue(expensesTaken_tx);
-                                                        d_schedule_trip.child("expected_stoppage").setValue(expected_stoppage_tx);
-                                                        d_schedule_trip.child("fuel_price").setValue(fuelPrice_tx);
-                                                        d_schedule_trip.child("state_name").setValue(stateName_tx);
-                                                        d_schedule_trip.child("city_name").setValue(cityName_tx);
-                                                        d_schedule_trip.child("status").setValue("active");
-                                                        d_schedule_trip.child("start_date").setValue(actualDate+"_"+actualTime);
-                                                        d_schedule_trip.child("start_location").setValue(tripStartLocation_tx);
-                                                        d_schedule_trip.child("fuel_taken").setValue(fuelTaken_tx);
+                                                                        if (dataSnapshot.child("trip_details").hasChild(contactUID_tx)){
 
-                                                        d_root.child("driver_profiles").child(contactUID_tx).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-                                                            @Override
-                                                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                                                d_root.child("trip_status").child(key).child("driverContact").setValue(contactUID_tx);
-                                                                d_root.child("trip_status").child(key).child("driverName").setValue(dataSnapshot.getValue(String.class));
-                                                                d_root.child("trip_status").child(key).child("tripStarted").setValue(actualDate+"_"+actualTime);
-                                                                d_root.child("trip_status").child(key).child("truckNumber").setValue(truckNumber_tx);
+                                                                        long numb = dataSnapshot.child("trip_details").child(contactUID_tx)
+                                                                                .getChildrenCount();
+
+                                                                        int number = (int)(numb);
+                                                                        final String capacity = dataSnapshot.child("truck_details").child(truckNumber_tx).child("truck_tank_capacity")
+                                                                                .getValue(String.class);
+
+
+                                                                        if (number >= 1 && !TextUtils.isEmpty(capacity)) {
+                                                                            Query lastQuery = dataRef_spinner.child("trip_details").child(contactUID_tx).orderByKey().limitToLast(1);
+                                                                            lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                                @Override
+                                                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                                                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                                                        String key = snapshot.getKey();
+                                                                                        int fuelLeft = Integer.parseInt(capacity) - Integer.parseInt(fuelTaken_tx);
+                                                                                        dataRef_spinner.child("trip_details").child(contactUID_tx).child(key).child("end_trip")
+                                                                                                .child("fuel_left").setValue(String.valueOf(fuelLeft));
+
+                                                                                    }
+                                                                                }
+
+                                                                                @Override
+                                                                                public void onCancelled(DatabaseError databaseError) {
+
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                    }// if end
+
+
+                                                                            Toast.makeText(DashBoard.this, "hit", Toast.LENGTH_SHORT).show();
+
+                                                                            Calendar c = Calendar.getInstance();
+                                                                            SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy");
+                                                                            SimpleDateFormat sdf1 = new SimpleDateFormat("HH_mm");
+                                                                            actualDate = sdf.format(c.getTime());
+                                                                            actualTime = sdf1.format(c.getTime());
+
+
+                                                                            final String key = d_root.push().getKey();
+
+
+                                                                            d_schedule_trip = d_root.child("trip_details").child(contactUID_tx).child(key).child("start_trip");
+
+                                                                            d_schedule_trip.child("truck_number").setValue(truckNumber_tx);
+                                                                            d_schedule_trip.child("truck_location").setValue(truckLocation_tx);
+                                                                            d_schedule_trip.child("expenses_taken").setValue(expensesTaken_tx);
+                                                                            d_schedule_trip.child("expected_stoppage").setValue(expected_stoppage_tx);
+                                                                            d_schedule_trip.child("fuel_price").setValue(fuelPrice_tx);
+                                                                            d_schedule_trip.child("state_name").setValue(stateName_tx);
+                                                                            d_schedule_trip.child("city_name").setValue(cityName_tx);
+                                                                            d_schedule_trip.child("status").setValue("active");
+                                                                            d_schedule_trip.child("start_date").setValue(actualDate+"_"+actualTime);
+                                                                            d_schedule_trip.child("start_location").setValue(tripStartLocation_tx);
+                                                                            d_schedule_trip.child("fuel_taken").setValue(fuelTaken_tx);
+
+                                                                            d_root.child("driver_profiles").child(contactUID_tx).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                                @Override
+                                                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                                                    d_root.child("trip_status").child(key).child("driverContact").setValue(contactUID_tx);
+                                                                                    d_root.child("trip_status").child(key).child("driverName").setValue(dataSnapshot.getValue(String.class));
+                                                                                    d_root.child("trip_status").child(key).child("tripStarted").setValue(actualDate+"_"+actualTime);
+                                                                                    d_root.child("trip_status").child(key).child("truckNumber").setValue(truckNumber_tx);
+
+
+
+                                                                                }
+
+
+                                                                                @Override
+                                                                                public void onCancelled(DatabaseError databaseError) {
+                                                                                    dialog_scheduleTrip.dismiss();
+                                                                                }
+                                                                            });
+
+
+
+
+                                                                            dialog_scheduleTrip.dismiss();
+
+
+                                                                            Intent mIntent = getIntent();
+                                                                            finish();
+                                                                            startActivity(mIntent);
+
+
+
+
+
+
+
+
+
+
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                                    }
+                                                                }); // writing fuel left values
+
 
 
 
                                                             }
 
-
-                                                            @Override
-                                                            public void onCancelled(DatabaseError databaseError) {
-                                                                dialog_scheduleTrip.dismiss();
-                                                            }
-                                                        });
-
-                                                        Alerter.create(DashBoard.this)
-                                                                .setTitle("Trip Started")
-                                                                .setContentGravity(1)
-                                                                .setBackgroundColorRes(R.color.black)
-                                                                .setIcon(R.drawable.success_icon)
-                                                                .show();
-                                                        dialog_scheduleTrip.dismiss();
-
-
-                                                        Intent mIntent = getIntent();
-                                                        finish();
-                                                        startActivity(mIntent);
+                                                        }, 2000);
 
                                                     }
 
-                                                }, 2000);
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
 
-                                    }
 
+                                                    }
+                                                });
+
+
+
+                                                // TODO
+                                            }
+                                        })
+                                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                            @Override
+                                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                                // TODO
+                                                dialog_scheduleTrip.dismiss();
+                                            }
+                                        }) .onNeutral(new MaterialDialog.SingleButtonCallback() {
                                     @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-
-
+                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                        // TODO
+                                        dialog_scheduleTrip.dismiss();
                                     }
-                                });
+                                })
+                                        .show();
 
 
 
-                                // TODO
+
                             }
-                        })
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                // TODO
-                                dialog_scheduleTrip.dismiss();
-                            }
-                        }) .onNeutral(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        // TODO
-                        dialog_scheduleTrip.dismiss();
-                    }
-                })
-                        .show();
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
                 break;
 
 
@@ -1066,7 +1157,6 @@ public class DashBoard extends AppCompatActivity
                     String truck_number = dataSnapshot.child("truck_number").getValue(String.class);
                     String start_date = dataSnapshot.child("expected_start_date").getValue(String.class);
 
-                    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
                     Intent showIntent = new Intent(context, TripSchedules.class);
@@ -1091,9 +1181,6 @@ public class DashBoard extends AppCompatActivity
 
                     hideItem();
 
-
-                    assert v != null;
-                    v.vibrate(300);
 
                 }
 
@@ -1192,7 +1279,7 @@ public class DashBoard extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!TextUtils.equals(connected, "connected")){
+                if (!TextUtils.equals(connected, "connected") && startNewTrip_rl.getVisibility() == View.VISIBLE){
                     noInternet.setVisibility(View.VISIBLE);
                     YoYo.with(Techniques.FadeIn)
                             .duration(3000)
@@ -1485,6 +1572,7 @@ public class DashBoard extends AppCompatActivity
         });
 
     }
+
 
 }
 
