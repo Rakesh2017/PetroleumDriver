@@ -21,7 +21,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.firebase.database.DataSnapshot;
@@ -31,14 +30,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.tapadoo.alerter.Alerter;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
 import dmax.dialog.SpotsDialog;
 import im.delight.android.location.SimpleLocation;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -64,7 +61,7 @@ public class LoadUnLoad extends Fragment implements View.OnClickListener{
     FancyButton load_submit_btn, unLoad_submit_btn, load_btn, unLoad_btn;
 
     private DatabaseReference d_root = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference d_load, d_unLoad;
+    private DatabaseReference d_load;
 
     DatabaseReference d_networkStatus = FirebaseDatabase.getInstance().getReference().child("checkNetwork").child("isConnected");
 
@@ -589,8 +586,7 @@ public class LoadUnLoad extends Fragment implements View.OnClickListener{
         }
 
 
-        double latitude = location.getLatitude();
-        return latitude;
+        return location.getLatitude();
 
 
     }
@@ -608,8 +604,7 @@ public class LoadUnLoad extends Fragment implements View.OnClickListener{
         }
 
 
-        final double longitude = location.getLongitude();
-        return longitude;
+        return location.getLongitude();
 
 
     }

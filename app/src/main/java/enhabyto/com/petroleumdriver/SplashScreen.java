@@ -1,5 +1,6 @@
 package enhabyto.com.petroleumdriver;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,15 +10,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-
 import mehdi.sakout.fancybuttons.FancyButton;
-import util.android.textviews.FontTextView;
+
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -34,10 +36,12 @@ public class SplashScreen extends AppCompatActivity {
             if(dataSave.getString("LaunchApplication","").equals("DashBoard")){
                 Intent intent = new Intent(SplashScreen.this, DashBoard.class);
                 startActivity(intent);
+                SplashScreen.this.finish();
+                return;
             }
 
         }
-        catch (NullPointerException e){
+        catch (NullPointerException | IllegalStateException e){
             e.printStackTrace();
         }
 
@@ -91,10 +95,72 @@ public class SplashScreen extends AppCompatActivity {
         }
 
         else {
-            Intent i = new Intent(getBaseContext(), Login.class);
-            startActivity(i);
+            SharedPreferences dataSave = getSharedPreferences("termsConditions", 0);
+            String condition = dataSave.getString("EnhabytoTerms","");
 
-            SplashScreen.this.finish();
+            if (condition.equals("accepted")){
+                Intent i = new Intent(getBaseContext(), Login.class);
+                startActivity(i);
+                SplashScreen.this.finish();
+            }
+            else {
+
+                new MaterialDialog.Builder(this)
+                        .title("Accept Terms and Conditions")
+                        .titleColor(getResources().getColor(R.color.naturalBlue))
+                        .content("Thank you for selecting the Services offered by Enhabyto IT Solutions Pvt. Ltd and/or its subsidiaries and affiliates (referred to as Enhabyto, we, our, or us). " +
+                                "Accept terms and Conditions to avail our services.")
+                        .contentColor(getResources().getColor(R.color.black))
+                        .positiveText("Agree")
+                        .positiveColor(getResources().getColor(R.color.lightGreen))
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog dialog, DialogAction which) {
+                                SharedPreferences dataSave = getSharedPreferences("termsConditions", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = dataSave.edit();
+                                editor.putString("EnhabytoTerms", "accepted");
+                                editor.apply();
+                                Intent i = new Intent(getBaseContext(), Login.class);
+                                startActivity(i);
+                                SplashScreen.this.finish();
+                            }
+                        })
+                        .negativeText("Decline")
+                        .negativeColor(getResources().getColor(R.color.lightRed))
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog dialog, DialogAction which) {
+                                SharedPreferences dataSave = getSharedPreferences("termsConditions", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = dataSave.edit();
+                                editor.putString("EnhabytoTerms", "decline");
+                                editor.apply();
+                                Toast.makeText(SplashScreen.this, "You have to accept terms and conditions to use application", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .neutralText("Terms/Conditions")
+                        .neutralColor(getResources().getColor(R.color.saddleBrown))
+                        .onNeutral(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog dialog, DialogAction which) {
+                                Intent i = new Intent(getBaseContext(), TermAndCondition.class);
+                                startActivity(i);
+                            }
+                        })
+                        .show();
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 

@@ -58,8 +58,6 @@ public class BackgroundService extends Service {
                     boolean connected = snapshot.getValue(Boolean.class);
                     if (connected) {
 
-
-
                         SharedPreferences shared = getSharedPreferences("firstLog", MODE_PRIVATE);
                         String contactUID_tx;
                         DatabaseReference d_root = FirebaseDatabase.getInstance().getReference();
@@ -121,10 +119,6 @@ public class BackgroundService extends Service {
 
                             }
                         });
-
-
-
-
 
 
 

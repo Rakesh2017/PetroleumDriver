@@ -23,9 +23,7 @@
         <activity
             android:name=".Login"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
@@ -49,8 +47,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".TermAndCondition"></activity>
     </application>
 
 </manifest>

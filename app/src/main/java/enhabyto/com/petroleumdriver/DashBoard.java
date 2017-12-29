@@ -19,7 +19,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
@@ -47,8 +46,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
@@ -433,6 +430,16 @@ public class DashBoard extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_profile) {
+            if (!isNetworkAvailable()){
+                Alerter.create(DashBoard.this)
+                        .setTitle("No Internet Connection!")
+                        .setText("Need internet connection to view your Profile")
+                        .setContentGravity(1)
+                        .setBackgroundColorRes(R.color.black)
+                        .setIcon(R.drawable.no_internet)
+                        .show();
+            }
+            else
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_DashBoard,new Profile()).addToBackStack("TruckFragments").commit();
 
 
@@ -490,8 +497,8 @@ public class DashBoard extends AppCompatActivity
                                     public void run() {
 
                                         dialog_logging_out.dismiss();
-                                        moveTaskToBack(true);
-                                        finish();
+                                        DashBoard.this.finish();
+
 
                                     }
 
@@ -607,6 +614,17 @@ public class DashBoard extends AppCompatActivity
                 expensesTaken_tx = expensesTaken_et.getText().toString().trim();
                 tripStartLocation_tx = tripStartLocation_act.getText().toString().trim();
                 fuelTaken_tx = fuelTaken_et.getText().toString().trim();
+
+                if (!isNetworkAvailable()){
+                    Alerter.create(DashBoard.this)
+                            .setTitle("No Internet Connection!")
+                            .setContentGravity(1)
+                            .setBackgroundColorRes(R.color.black)
+                            .setIcon(R.drawable.no_internet)
+                            .show();
+                    dialog_scheduleTrip.dismiss();
+                    return;
+                }
 
                 if (TextUtils.equals(truckNumber_tx, "")){
                     Alerter.create(DashBoard.this)
@@ -783,14 +801,12 @@ public class DashBoard extends AppCompatActivity
 
                                                                                 @Override
                                                                                 public void onCancelled(DatabaseError databaseError) {
-
-                                                                                }
+                                                                                    throw databaseError.toException();                                                                                }
                                                                             });
                                                                         }
                                                                     }// if end
 
 
-                                                                            Toast.makeText(DashBoard.this, "hit", Toast.LENGTH_SHORT).show();
 
                                                                             Calendar c = Calendar.getInstance();
                                                                             SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy");
@@ -832,7 +848,7 @@ public class DashBoard extends AppCompatActivity
                                                                                 @Override
                                                                                 public void onCancelled(DatabaseError databaseError) {
                                                                                     dialog_scheduleTrip.dismiss();
-                                                                                }
+                                                                                    throw databaseError.toException();                                                                                }
                                                                             });
 
 
@@ -849,18 +865,11 @@ public class DashBoard extends AppCompatActivity
 
 
 
-
-
-
-
-
-
                                                                     }
 
                                                                     @Override
                                                                     public void onCancelled(DatabaseError databaseError) {
-
-                                                                    }
+                                                                        throw databaseError.toException();                                                                    }
                                                                 }); // writing fuel left values
 
 
@@ -874,8 +883,7 @@ public class DashBoard extends AppCompatActivity
 
                                                     @Override
                                                     public void onCancelled(DatabaseError databaseError) {
-
-
+                                                        throw databaseError.toException();
                                                     }
                                                 });
 
@@ -909,8 +917,7 @@ public class DashBoard extends AppCompatActivity
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-
-                        }
+                            throw databaseError.toException();                        }
                     });
 
 
@@ -956,7 +963,9 @@ public class DashBoard extends AppCompatActivity
 
            }
            else {
-               DashBoard.this.recreate();
+               DashBoard.this.finish();
+               Intent intent = new Intent(this, DashBoard.class);
+               startActivity(intent);
            }
 
            break;
@@ -966,9 +975,10 @@ public class DashBoard extends AppCompatActivity
     }
 
 
+    // onStart
+
     protected  void onStart(){
         super.onStart();
-
 
         if (counter == 1){
 
@@ -999,8 +1009,6 @@ public class DashBoard extends AppCompatActivity
             },3000);
             counter++;
         }
-
-
 
 
 
@@ -1036,6 +1044,7 @@ public class DashBoard extends AppCompatActivity
                 @Override
                 public void run() {
                     if (noInternet.getVisibility() == View.VISIBLE ){
+
                         dialog_updatingData.dismiss();
                     }
 
@@ -1053,8 +1062,7 @@ public class DashBoard extends AppCompatActivity
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
-            }
+                throw databaseError.toException();            }
         });
 
 
@@ -1119,7 +1127,6 @@ public class DashBoard extends AppCompatActivity
                                    }
 
 
-
                                    dialog_updatingData.dismiss();
                                }
 
@@ -1127,16 +1134,14 @@ public class DashBoard extends AppCompatActivity
 
                            @Override
                            public void onCancelled(DatabaseError databaseError) {
-
-                           }
+                               throw databaseError.toException();                           }
                        });
 
                    }
 
                    @Override
                    public void onCancelled(DatabaseError databaseError) {
-
-                   }
+                       throw databaseError.toException();                   }
                });
 
 
@@ -1190,8 +1195,7 @@ public class DashBoard extends AppCompatActivity
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
-            }
+                throw databaseError.toException();            }
         });
 
 
@@ -1260,7 +1264,7 @@ public class DashBoard extends AppCompatActivity
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                throw databaseError.toException();
             }
         });
 
@@ -1270,6 +1274,7 @@ public class DashBoard extends AppCompatActivity
             @Override
             public void run() {
                 if (tripPage_rl.getVisibility() == View.VISIBLE || startNewTrip_btn.getVisibility() == View.VISIBLE){
+                    noInternet.setVisibility(View.GONE);
                     dialog_updatingData.dismiss();
                 }
 
@@ -1279,7 +1284,9 @@ public class DashBoard extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!TextUtils.equals(connected, "connected") && startNewTrip_rl.getVisibility() == View.VISIBLE){
+                if (!TextUtils.equals(connected, "connected") &&
+                        startNewTrip_rl.getVisibility() == View.GONE &&
+                        tripPage_rl.getVisibility()== View.GONE && startNewTrip_btn.getVisibility()==View.GONE){
                     noInternet.setVisibility(View.VISIBLE);
                     YoYo.with(Techniques.FadeIn)
                             .duration(3000)
@@ -1298,7 +1305,7 @@ public class DashBoard extends AppCompatActivity
                     dialog_updatingData.dismiss();
                 }
             }
-        },15000);
+        },12000);
 
 
 
@@ -1572,6 +1579,7 @@ public class DashBoard extends AppCompatActivity
         });
 
     }
+
 
 
 }

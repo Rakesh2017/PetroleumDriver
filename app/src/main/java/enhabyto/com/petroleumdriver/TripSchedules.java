@@ -20,8 +20,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.firebase.database.DataSnapshot;
@@ -31,16 +29,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.tapadoo.alerter.Alerter;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import co.ceryle.radiorealbutton.RadioRealButton;
 import co.ceryle.radiorealbutton.RadioRealButtonGroup;
 import dmax.dialog.SpotsDialog;
-import mehdi.sakout.fancybuttons.FancyButton;
 import util.android.textviews.FontTextView;
 
 /**
@@ -201,6 +196,50 @@ public class TripSchedules extends AppCompatActivity{
                                     return;
                                 }
 
+
+                                dataRef_spinner.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+
+                                        if (dataSnapshot.child("trip_details").hasChild(contactUID_tx)){
+
+                                            long numb = dataSnapshot.child("trip_details").child(contactUID_tx)
+                                                    .getChildrenCount();
+
+                                            int number = (int)(numb);
+                                            final String capacity = dataSnapshot.child("truck_details").child(truckNumber_tx).child("truck_tank_capacity")
+                                                    .getValue(String.class);
+
+
+                                            if (number >= 1 && !TextUtils.isEmpty(capacity)) {
+                                                Query lastQuery = dataRef_spinner.child("trip_details").child(contactUID_tx).orderByKey().limitToLast(1);
+                                                lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                            String key = snapshot.getKey();
+                                                            int fuelLeft = Integer.parseInt(capacity) - Integer.parseInt(fuelTaken_tx);
+                                                            dataRef_spinner.child("trip_details").child(contactUID_tx).child(key).child("end_trip")
+                                                                    .child("fuel_left").setValue(String.valueOf(fuelLeft));
+
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
+                                                });
+                                            }
+                                        }// if end
+
+
+
+
+
+
                                 Calendar c = Calendar.getInstance();
                                 SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy");
                                 SimpleDateFormat sdf1 = new SimpleDateFormat("HH_mm");
@@ -251,9 +290,17 @@ public class TripSchedules extends AppCompatActivity{
                                                     startActivity(new Intent(TripSchedules.this, DashBoard.class));
                                                     dialog_scheduleTrip.dismiss();
 
-
-
                                                 }
+
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        }); // writing fuel left values
+
                                             }
 
                                             @Override

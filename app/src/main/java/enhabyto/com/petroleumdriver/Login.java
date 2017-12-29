@@ -4,27 +4,19 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tapadoo.alerter.Alerter;
-
 import dmax.dialog.SpotsDialog;
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -32,7 +24,6 @@ public class Login extends AppCompatActivity {
 
     private EditText contact_et, password_et;
     private String password_tx, contact_tx, match_password_tx, match_contact_tx;
-    private FancyButton login_btn;
     private AlertDialog dialog;
     DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference().child("checkNetwork").child("isConnected");
     String connected;
@@ -54,7 +45,7 @@ public class Login extends AppCompatActivity {
 
         contact_et = findViewById(R.id.login_contactEditText);
         password_et = findViewById(R.id.login_passwordEditText);
-        login_btn = findViewById(R.id.login_loginButton);
+        FancyButton login_btn = findViewById(R.id.login_loginButton);
         dialog = new SpotsDialog(Login.this, R.style.logging);
 
 

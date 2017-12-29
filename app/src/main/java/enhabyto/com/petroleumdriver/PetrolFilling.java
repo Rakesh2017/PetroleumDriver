@@ -12,12 +12,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,9 +27,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -45,19 +40,14 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.iceteck.silicompressorr.FileUtils;
-import com.iceteck.silicompressorr.SiliCompressor;
 import com.tapadoo.alerter.Alerter;
-
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import dmax.dialog.SpotsDialog;
 import id.zelory.compressor.Compressor;
 import im.delight.android.location.SimpleLocation;
@@ -72,7 +62,6 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class PetrolFilling extends Fragment {
 
-    private View view;
     AutoCompleteTextView stateName_et;
     AutoCompleteTextView pumpName_et;
     EditText  pump_address_et, moneyPaid_et, petrolFilled_et, pump_token_et;
@@ -95,7 +84,6 @@ public class PetrolFilling extends Fragment {
     ImageView bill_img;
 
     private  String key, secondKey, pumpDateTime;
-    int size;
 
     Spinner spinner;
     final String [] states = new String[]{"Andra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat"
@@ -113,7 +101,7 @@ public class PetrolFilling extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_petrol_filling, container, false);
+        View view = inflater.inflate(R.layout.fragment_petrol_filling, container, false);
 
 
 

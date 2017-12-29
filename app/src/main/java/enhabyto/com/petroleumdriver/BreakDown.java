@@ -848,6 +848,7 @@ public class BreakDown extends Fragment implements View.OnClickListener {
 
                                             dialog_updating.dismiss();
 
+
                                         }
 
                                         @Override
@@ -869,7 +870,7 @@ public class BreakDown extends Fragment implements View.OnClickListener {
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-
+                                Toast.makeText(getActivity(), ""+databaseError.toException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -877,7 +878,7 @@ public class BreakDown extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(getActivity(), ""+databaseError.toException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
